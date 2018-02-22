@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fi">
+    <head>
+        <meta charset="UTF-8" />
+        <link href="stylesheet.css" rel="StyleSheet" type="text/css" />
+        <title>Reference - Resolutionary documentation</title>
+    </head>
+    <body>
+        <h1>Reference</h1>
+        <p>Resolutionary is a system for scaling your games made with Game Editor.</p>
+        <div id="resChangeActorType" class="referenceItem">
+            <h2>resChangeActorType(const char *actorName, int type)</h2>
+            <p><strong>actorName</strong> - name of the actor<br />
+            <strong>type</strong> - the type to be set for the actor</p>
+            <ul>
+            <li>RES_ACTOR_DYNAMIC</li>
+            <li>RES_ACTOR_STATIC</li>
+            <li>RES_ACTOR_NOT_DRAWABLE</li>
+            </ul>
+            <p>Example call:</p>
+            <code>resChangeActorType("Event Actor", RES_ACTOR_DYNAMIC);</code>
+            <p>This function sets an actor's type that specifies how Resolutionary should handle the actor.</p>
+        </div>
+        <div id="resChangeActorType" class="referenceItem">
+            <h2>resChangeActorType(const char *actorName, int type)</h2>
+            <ul>
+            <li><strong>actorName</strong> - name of the actor</li>
+            <li><strong>type</strong> - the type to be set for the actor
+            <ul>
+            <li>RES_ACTOR_DYNAMIC</li>
+            <li>RES_ACTOR_STATIC</li>
+            <li>RES_ACTOR_NOT_DRAWABLE</li>
+            </ul></li>
+            </ul>
+            <p>Example call:</p>
+            <code>resChangeActorType("Event Actor", RES_ACTOR_DYNAMIC);</code>
+            <p>This function sets an actor's type that specifies how Resolutionary should handle the actor.</p>
+        </div>
+        <div id="resChangeActorZLayer" class="referenceItem">
+            <h2>resChangeActorZLayer(const char *actorName, int zLayer)</h2>
+            <p><strong>actorName</strong> - name of the actor<br />
+            <strong>zLayer</strong> - the number of the z layer to assign to the actor</p>
+            <p>This function sets an actor's z layer. Actors are drawn in order by their z layer, from lowest to highest. So, actors with a higher z layer will be drawn on top of the actors with a lower z layer. The number of an actor's z layer can be positive or negative</p>
+        </div>
+    </body>
+</html>

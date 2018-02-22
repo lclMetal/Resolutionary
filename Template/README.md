@@ -1,0 +1,1 @@
+This is the Resolutionary template file, which you can merge into your game. Make sure to not overwrite this file with your game.
