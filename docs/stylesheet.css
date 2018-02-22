@@ -1,0 +1,48 @@
+body {
+    background-color: lightgray;
+    color: black;
+    font-family: "Segoe UI";
+    font-weight: lighter;
+    margin: 1em 1em;
+}
+
+h1 {
+    font-weight: lighter;
+}
+
+h2 {
+    font-size: 1.2em;
+    font-weight: lighter;
+    margin: 0.5em;
+}
+
+p {
+    margin: 1em;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1400px;
+    margin: auto;
+}
+
+.flex div {
+    background-color: white;
+    float: left;
+    width: 32%;
+    margin: 0.5%;
+}
+
+.referenceItem {
+    background-color: white;
+}
+
+code {
+    margin: 2em;
+}
+
+li {
+    list-style-type: circle;
+}

@@ -1,0 +1,53 @@
+To add Resolutionary to a game, load up your game in Game Editor, and then merge Resolutionary_template.ged to the project by clicking File -> Merge.
+
+Then you have to configure Resolutionary according to these steps:
+
+1. (Optional) Use resSetBackgroundColor() to set the background color that Resolutionary should use. You can skip this step if you want. The default background color is black. (You can place this function call in view -> Create Actor, for example)
+
+2. (Optional) Use resSetBorderColor() to set the color for the bars that will appear if you scale the game to a resolution with different aspect ratio (also known as black bars). Again, you can skip setting the color, by default the bars are black. (You can place this function call in view -> Create Actor, for example)
+
+3. Use resStart() to start up Resolutionary. The function takes two arguments - the width and height of the game's original resolution. For example, the original resolution of the example game provided with Resolutionary is 640x480, so you'd call the function like this:
+    resStart(640, 480);
+(You can place this function call in view -> Create Actor, for example)
+
+4. Because Resolutionary uses dynamic memory allocation, it is important that you call resQuit() before exiting the game, as that function will take care of freeing the allocated memory. If the memory is not freed, Game Editor will allocate more and more memory every time you enter Game Mode, and eventually it could cause problems. I suggest adding an alternate key for exiting Game Mode.
+Add this to the key down event:
+    resQuit();
+And then add a key up event for the same key:
+    ExitGame();
+Now, when you press the key down, resQuit() will perform the necessary operations, and when you release the key, ExitGame() will exit you back to Game Editor.
+
+Now you have the basic configuration done, and you can try scaling your game to a new resolution. For trying up a new resolution follow these steps:
+
+1. Before changing the game's resolution, resize the actor resActorFinder to the size of the view actor.
+
+2. Change the project's resolution from Config -> Game properties -> Game resolution. You can select a resolution from the list, or manually input dimensions to the fields on the right.
+
+3. Resize the actors resDynamicLayerCanvas and resStaticLayerCanvas to the new size of the view actor.
+
+Now if you enter Game Mode, you will see your game scaled to the resolution you selected.
+
+You may notice some errors in the way your game is drawn, but don't worry, that's just because so far we've only set up the basic parts of Resolutionary, that are the same for every project. After these steps some further adjusting may be needed to fix positioning problems and to increase the performance of the scaling system.
+
+Here is a list of basic issues that may occur before adjusting the system properly for your game.
+
+What to do if...
+
+- My game runs slow with Resolutionary:
+Resolutionary has two settings for how to draw the actors that appear on screen. These settings are dynamic and static.
+Actors that are set to dynamic mode, are redrawn every frame, and actors that are set to static mode, are by default drawn only when they first appear. Static actors can also be redrawn at any time by command. 
+Now, Resolutionary doesn't know which actors should be dynamic and which should be static, so the default setting for all actors is dynamic, as most actors have to be redrawn every frame because of movement or animation. If your game has a lot of actors on screen at a time, updating them all constantly can be quite heavy and cause slow performance.
+If your game has actors that don't need constant updating (static backgrounds, for example), you can set them to be static. This can be done with the function resSetActorType():
+    resSetActorType("Event Actor", RES_ACTOR_STATIC);
+For example, in the example game provided with Resolutionary the land is set to be a static actor, as it remains stationary.
+Also, your game may include actors that don't need to be drawn (hitboxes, filled region actors, wire frame region actors). But if those actors can have collision events, they get added to the list of actors to draw, and thus make the list longer and more inefficient to process. You can prevent this by setting all these actors' type to RES_ACTOR_NOT_DRAWABLE:
+    resSetActorType("Event Actor", RES_ACTOR_NOT_DRAWABLE);
+Another possible cause for low performance is if your z layer ordering is inefficient. The actors are added to the lists in order by their z layer, the higher the number, the closer to the list's end the actor will be placed, so that it will be drawn last. If you, for example, have a lot of clones being created and destroyed all the time and their z layer is high, this means, that whenever a new clone spawns, Resolutionary has to travel all the way through the list to find the correct place for the actor.
+
+- I can't see my actor on the screen / my actor shows up in wrong position:
+If you can't see your actor drawn on the screen, there's usually two possible reasons why. Either your actor gets drawn over by another actor, or then your actor is parented to another actor, but Resolutionary doesn't know that, and thus draws the actor in wrong coordinates, which could be outside of the view.
+If you know for sure that your actor doesn't have a parent, then the issue is that the actor is getting drawn over by another actor. For solving this issue, you have to use the function resSetActorZLayer():
+    resSetActorZLayer("Event Actor", 1);
+For example, you can set the z layer in an actor's Create Actor event. The actors are drawn in order by their z layer, from lowest to highest. So, and actor with a z layer 1 will be drawn over an actor with z layer 0. All actor's have their z layer set to 0 by default, and you need to adjust the layers so that they get drawn in right order.
+If you can't see your actor because it is parented, all you have to do is to let Resolutionary know about that. For this, there's the function resSetActorParent():
+    resSetActorParent("Event Actor", "theParentActor");

@@ -1,0 +1,4 @@
+out of vision events should be replaced with collision finish with resActorDetector
+mouse over events should be replaced with collision with resMouse
+mouse leave events should be replaced with collision finish with resMouse
+mouse button down and up events should be replaced with activation event from resMouseClickDetector
