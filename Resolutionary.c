@@ -78,13 +78,15 @@ typedef struct resActorObjectStruct
 // Definition of the Resolutionary system controller struct
 struct resControllerStruct
 {
+    int systemOn;             // Whether the system is currently running (1) or not (0)
+    
     double scale;             // The scale to resize the game to
     int originalScreenWidth;  // The width of the original resolution
     int originalScreenHeight; // The height of the original resolution
     int scaledScreenWidth;    // The width of the resolution to scale to
     int scaledScreenHeight;   // The height of the resolution to scale to
     int updateStaticLayer;    // A flag to be raised when the static layer needs an update
-    int backgroundColor[3];   // The rgb of the color to erase the canvas with
+    int backgroundColor[3];   // The rgb of the color to use as background color
     int borderColor[3];       // The rgb of the color to set for the 'black bars'
     int limitingDimension;    // Is the scale value determined by width or height
     int borderSize;           // The size of the black bars
@@ -297,9 +299,20 @@ void resChangeActorParent(const char *actorName, const char *parentName)
 // bValue - the blue color component, input a value between 0 - 255
 void resSetBackgroundColor(int rValue, int gValue, int bValue)
 {
+    Actor *pBackground = NULL; // Pointer to background actor
+    
     resController.backgroundColor[0] = rValue;
     resController.backgroundColor[1] = gValue;
     resController.backgroundColor[2] = bValue;
+    
+    pBackground = getclone("resBackground"); // Get pointer to background actor
+    
+    if (pBackground->cloneindex != -1) // If background actor exists, color it as well
+    {
+        pBackground->r = resController.backgroundColor[0];
+        pBackground->g = resController.backgroundColor[1];
+        pBackground->b = resController.backgroundColor[2];
+    }
 }
 
 // This function sets the color of the borders that will be shown on the edges of the screen if
@@ -331,6 +344,7 @@ void resStart(int originalWidth, int originalHeight)
     // Pointers for all the Resolutionary system actors that will be created
     Actor *pBarOne = NULL,
           *pBarTwo = NULL,
+          *pBackground = NULL,
           *pActorDetector = NULL,
           *pMouse = NULL,
           *pClickDetector = NULL,
@@ -346,12 +360,25 @@ void resStart(int originalWidth, int originalHeight)
     resController.mButtonState[RES_MOUSE_WHEEL_DOWN] = RES_MOUSE_UP;
 
     // Create the Resolutionary system actors
+    pBackground = CreateActor("resBackground", "resBackground", "(none)", "(none)", 0, 0, true);
     pActorDetector = CreateActor("resActorDetector", "icon", "(none)", "(none)", 0, 0, true);
-    pMouse = CreateActor("resMouse", "mouse", "(none)", "(none)", 0, 0, true);
+    pMouse = CreateActor("resMouse", "resMouse", "(none)", "(none)", 0, 0, true);
     pClickDetector = CreateActor("resMouseClickDetector", "icon", "(none)", "(none)", 0, 0, true);
     pDynamicLayer = CreateActor("resDynamicLayerCanvas", "icon", "(none)", "(none)", 0, 0, true);
     pStaticLayer = CreateActor("resStaticLayerCanvas", "icon", "(none)", "(none)", 0, 0, true);
 
+    // Initialize Background
+    ChangeParent(pBackground->clonename, "view");       // Parent to view
+    ChangeZDepth(pBackground->clonename, 1.1);          // Set z depth
+    CollisionState(pBackground->clonename, DISABLE);    // Disable collision
+    EventDisable(pBackground->clonename, EVENTALL);     // Disable all events
+    pBackground->x = resController.pView->width * 0.5;  // Set x coordinate in relation to view
+    pBackground->y = resController.pView->height * 0.5; // Set y coordinate in relation to view
+    pBackground->r = resController.backgroundColor[0];  // Set color r component
+    pBackground->g = resController.backgroundColor[1];  // Set color g component
+    pBackground->b = resController.backgroundColor[2];  // Set color b component
+    
+    
     // Initialize ActorDetector
     ChangeParent(pActorDetector->clonename, "view");  // Parent to view
     ChangeZDepth(pActorDetector->clonename, 0.0);     // Set z depth
@@ -367,14 +394,14 @@ void resStart(int originalWidth, int originalHeight)
 
     // Initialize ClickDetector
     ChangeParent(pClickDetector->clonename, "view");    // Parent to view
-    ChangeZDepth(pClickDetector->clonename, 2.0);       // Set z depth
+    ChangeZDepth(pClickDetector->clonename, 1.4);       // Set z depth
     CollisionState(pClickDetector->clonename, DISABLE); // Disable collision
     pClickDetector->x = 0;                              // Set x coordinate in relation to view
     pClickDetector->y = 0;                              // Set y coordinate in relation to view
 
     // Initialize DynamicLayerCanvas
     ChangeParent(pDynamicLayer->clonename, "view");    // Parent to view
-    ChangeZDepth(pDynamicLayer->clonename, 1.7);       // Set z depth
+    ChangeZDepth(pDynamicLayer->clonename, 1.3);       // Set z depth
     CollisionState(pDynamicLayer->clonename, DISABLE); // Disable collision
     resDisableMouseEvents(pDynamicLayer->clonename);   // Disable mouse events
     pDynamicLayer->x = 0;                              // Set x coordinate in relation to view
@@ -382,7 +409,7 @@ void resStart(int originalWidth, int originalHeight)
 
     // Initialize StaticLayerCanvas
     ChangeParent(pStaticLayer->clonename, "view");    // Parent to view
-    ChangeZDepth(pStaticLayer->clonename, 1.6);       // Set z depth
+    ChangeZDepth(pStaticLayer->clonename, 1.2);       // Set z depth
     CollisionState(pStaticLayer->clonename, DISABLE); // Disable collision
     resDisableMouseEvents(pStaticLayer->clonename);   // Disable mouse events
     pStaticLayer->x = 0;                              // Set x coordinate in relation to view
@@ -422,12 +449,12 @@ void resStart(int originalWidth, int originalHeight)
             pDynamicLayer->y = pStaticLayer->y = excessSpaceHeight * 0.5;
 
             // Create the upper black bar and set its position
-            pBarOne = CreateActor("resBorders", "barHorizontal", "view", "(none)", 0, 0, true);
+            pBarOne = CreateActor("resBorders", "resBarHorizontal", "view", "(none)", 0, 0, true);
             pBarOne->x = pBarOne->width * 0.5;
             pBarOne->y = - (pBarOne->height * 0.5 - excessSpaceHeight * 0.5);
 
             // Create the lower black bar and set its position
-            pBarTwo = CreateActor("resBorders", "barHorizontal", "view", "(none)", 0, 0, true);
+            pBarTwo = CreateActor("resBorders", "resBarHorizontal", "view", "(none)", 0, 0, true);
             pBarTwo->x = pBarTwo->width * 0.5;
             pBarTwo->y = resController.pView->height +
                              (pBarTwo->height * 0.5 - excessSpaceHeight * 0.5);
@@ -448,12 +475,12 @@ void resStart(int originalWidth, int originalHeight)
             pDynamicLayer->x = pStaticLayer->x = excessSpaceWidth * 0.5;
 
             // Create the left side black bar and set its position
-            pBarOne = CreateActor("resBorders", "barVertical", "view", "(none)", 0, 0, true);
+            pBarOne = CreateActor("resBorders", "resBarVertical", "view", "(none)", 0, 0, true);
             pBarOne->x = - (pBarOne->width * 0.5 - excessSpaceWidth * 0.5);
             pBarOne->y = pBarOne->height * 0.5;
 
             // Create the right side black bar and set its position
-            pBarTwo = CreateActor("resBorders", "barVertical", "view", "(none)", 0, 0, true);
+            pBarTwo = CreateActor("resBorders", "resBarVertical", "view", "(none)", 0, 0, true);
             pBarTwo->x = resController.pView->width +
                              (pBarTwo->width * 0.5 - excessSpaceWidth * 0.5);
             pBarTwo->y = pBarTwo->height * 0.5;
@@ -465,8 +492,8 @@ void resStart(int originalWidth, int originalHeight)
         pBarOne->b = pBarTwo->b = resController.borderColor[2];
 
         // Set the z depth for the black bars
-        ChangeZDepth(pBarOne->clonename, 2);
-        ChangeZDepth(pBarTwo->clonename, 2);
+        ChangeZDepth(pBarOne->clonename, 2.0);
+        ChangeZDepth(pBarTwo->clonename, 2.0);
 
         // Disable collision for the black bars
         CollisionState(pBarOne->clonename, DISABLE);
@@ -479,12 +506,15 @@ void resStart(int originalWidth, int originalHeight)
 
     // Update static layer to make sure that the background gets colored at start
     resSendStaticLayerActivationEvent();
+    
+    resController.systemOn = RES_TRUE; // Set system state variable to true
 }
 
 // This function quits the Resolutionary system's execution, destroys all Resolutionary
 // system actors and frees all allocated memory
 void resQuit(void)
 {
+    DestroyActor("resBackground");
     DestroyActor("resActorDetector");
     DestroyActor("resMouse");
     DestroyActor("resMouseClickDetector");
@@ -492,6 +522,8 @@ void resQuit(void)
     DestroyActor("resStaticLayerCanvas");
     DestroyActor("resBorders");
     resDeleteActorObjectLists();
+    
+    resController.systemOn = RES_FALSE; // Set system state variable to false
 }
 
 // This function checks if a specified mouse button was just pressed down
@@ -1082,10 +1114,7 @@ void resDrawStaticLayer(void)
     int viewY = resController.pView->y; // Get view's y coordinate
     double scale = resController.scale; // Get the scale for drawing the actor
  
-    // Clear the canvas using the color set for the background
-    erase(resController.backgroundColor[0],
-          resController.backgroundColor[1],
-          resController.backgroundColor[2], 0);
+    erase(0, 0, 0, 1); // Clear the canvas
  
     while (ptr != NULL) // Traverse through the list
     {

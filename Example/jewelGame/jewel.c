@@ -225,24 +225,6 @@ void swapJewels(Coord from, Coord to)
     }
 }
 
-void moveJewel(Coord from, Coord to)
-{
-    Coord coordDiff;
-    
-    coordDiff.x = (int)abs(from.x - to.x);
-    coordDiff.y = (int)abs(from.y - to.y);
-    
-    gameField[to.y][to.x].jewelType = gameField[from.y][from.x].jewelType;
-    gameField[to.y][to.x].jp = gameField[from.y][from.x].jp;
-    gameField[from.y][from.x].jewelType = -1;
-    gameField[from.y][from.x].jp = NULL;
-    
-    MoveTo(gameField[to.y][to.x].jp->clonename,
-        fieldStart.x + to.x * JEWEL_WIDTH, fieldStart.y + to.y * JEWEL_WIDTH,
-        JEWEL_SPEED * (max(coordDiff.x, coordDiff.y) + 1), "Game Center", "");
-    jewelsMoving ++;
-}
-
 void destroyJewel(Coord pos)
 {
     DestroyActor(gameField[pos.y][pos.x].jp->clonename);
