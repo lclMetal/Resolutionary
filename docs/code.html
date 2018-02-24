@@ -6,41 +6,61 @@
         <title>Reference - Resolutionary documentation</title>
     </head>
     <body>
-        <h1>Reference</h1>
-        <p>Resolutionary is a system for scaling your games made with Game Editor.</p>
-        <div id="resChangeActorType" class="referenceItem">
-            <h2>resChangeActorType(const char *actorName, int type)</h2>
-            <p><strong>actorName</strong> - name of the actor<br />
-            <strong>type</strong> - the type to be set for the actor</p>
+        <div id="page-wrap">
+            <h1>Reference</h1>
+            <h2>Reference for the Resolutionary system</h2>
+            
             <ul>
-            <li>RES_ACTOR_DYNAMIC</li>
-            <li>RES_ACTOR_STATIC</li>
-            <li>RES_ACTOR_NOT_DRAWABLE</li>
+                <li>User functions</li>
+                <li>Variables</li>
+                <li>System's internal functions</li>
             </ul>
-            <p>Example call:</p>
-            <code>resChangeActorType("Event Actor", RES_ACTOR_DYNAMIC);</code>
-            <p>This function sets an actor's type that specifies how Resolutionary should handle the actor.</p>
-        </div>
-        <div id="resChangeActorType" class="referenceItem">
-            <h2>resChangeActorType(const char *actorName, int type)</h2>
-            <ul>
-            <li><strong>actorName</strong> - name of the actor</li>
-            <li><strong>type</strong> - the type to be set for the actor
-            <ul>
-            <li>RES_ACTOR_DYNAMIC</li>
-            <li>RES_ACTOR_STATIC</li>
-            <li>RES_ACTOR_NOT_DRAWABLE</li>
-            </ul></li>
-            </ul>
-            <p>Example call:</p>
-            <code>resChangeActorType("Event Actor", RES_ACTOR_DYNAMIC);</code>
-            <p>This function sets an actor's type that specifies how Resolutionary should handle the actor.</p>
-        </div>
-        <div id="resChangeActorZLayer" class="referenceItem">
-            <h2>resChangeActorZLayer(const char *actorName, int zLayer)</h2>
-            <p><strong>actorName</strong> - name of the actor<br />
-            <strong>zLayer</strong> - the number of the z layer to assign to the actor</p>
-            <p>This function sets an actor's z layer. Actors are drawn in order by their z layer, from lowest to highest. So, actors with a higher z layer will be drawn on top of the actors with a lower z layer. The number of an actor's z layer can be positive or negative</p>
+            
+            <h2 id="userFunctions" class="reference-category">User functions</h2>
+            
+            <div class="reference-item">
+                <h3><a href="#resChangeActorType" id="resChangeActorType">void resChangeActorType(const char *actorName, int type)</a></h3>
+                <p>This function sets an actor's type that specifies how Resolutionary should handle the actor. <em>Dynamic actors</em> will be redrawn every frame, while <em>Static actors</em> will be redrawn only when requested or when the list of static actors changes (new actor is added or old deleted). <em>Not drawable actors</em> will be ignored by Resolutionary's scaling functionality.</p>
+                <h3>Parameters</h3>
+                <ul>
+                <li><strong>actorName</strong> - The name or clonename of any actor in the game. Also supports "Event Actor", "Parent Actor", "Creator Actor" and "Collide Actor".</li>
+                <li><strong>type</strong> - The type to be set for the actor, must be one of the following:
+                <ul>
+                <li>RES_ACTOR_DYNAMIC</li>
+                <li>RES_ACTOR_STATIC</li>
+                <li>RES_ACTOR_NOT_DRAWABLE</li>
+                </ul></li>
+                </ul>
+                <h3>Example call</h3>
+                <p><code>resChangeActorType("Event Actor", RES_ACTOR_DYNAMIC);</code></p>
+            </div>
+            
+            <div class="reference-item">
+                <h3><a href="#resChangeActorZLayer" id="resChangeActorZLayer">void resChangeActorZLayer(const char *actorName, int zLayer)</a></h3>
+                <p>This function sets an actor's z layer. Actors are drawn in order by their z layer, from lowest to highest. So, actors with a higher z layer will be drawn on top of the actors with a lower z layer. The number of an actor's z layer can be positive or negative.</p>
+                <h3>Parameters</h3>
+                <ul>
+                <li><strong>actorName</strong> - The name or clonename of any actor in the game. Also supports "Event Actor", "Parent Actor", "Creator Actor" and "Collide Actor".</li>
+                <li><strong>zLayer</strong> - The number of the z layer to assign to the actor.</li>
+                </ul>
+                <h3>Example call</h3>
+                <p><code>resChangeActorZLayer("Event Actor", 1);</code></p>
+            </div>
+            
+            <div class="reference-item">
+                <h3><a href="#resChangeActorParent" id="resChangeActorParent">void resChangeActorParent(const char *actorName, const char *parentName)</a></h3>
+                <p>This function lets Resolutionary know that an actor has a parent, make sure to use this function together with Game Editor's ChangeParent function if the parented actor is to be drawn by Resolutionary.</p>
+                <p class="important"><strong>Important</strong><br />
+                Make sure to always use this function together with Game Editor's ChangeParent function if the parented actor is to be drawn by Resolutionary. If the system isn't notified of the change in the actor's parenting, the actor will be drawn in a wrong position.</p>
+                <h3>Parameters</h3>
+                <ul>
+                <li><strong>actorName</strong> - The name or clonename of the child actor. Supports "Event Actor", "Parent Actor", "Creator Actor" and "Collide Actor".</li>
+                <li><strong>parentName</strong> - The name or clonename of the parent actor. Supports "Event Actor", "Parent Actor", "Creator Actor" and "Collide Actor".</li>
+                </ul>
+                <h3>Example call</h3>
+                <p><code>resChangeActorParent("Event Actor", "view");</code></p>
+            </div>
+            
         </div>
     </body>
 </html>
