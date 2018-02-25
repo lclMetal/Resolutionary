@@ -233,9 +233,7 @@ void resChangeActorZLayer(const char *actorName, int zLayer)
     a->resActorZLayer = zLayer; // Set the actor's z layer
 }
 
-// This function lets Resolutionary know that an actor has a parent, make sure to
-// use this function together with Game Editor's ChangeParent function if the parented actor is
-// to be drawn by Resolutionary
+// This function lets Resolutionary know that an actor has a parent
 //
 // *** Important ***
 // Make sure to always use this function together with Game Editor's ChangeParent function if
@@ -563,8 +561,8 @@ int resOnMouseClick(enum resMouseButtonsEnum mButtonNumber)
 // Due to the way Resolutionary's mouse input works, this function can
 // only be used in an Activation Event from resMouseClickDetector
 // -> For more information, see Resolutionary's documentation
-// -> For checking if a specified mouse button is being held down,
-//    use the function resIsMouseButtonDown
+// -> For checking if a specified mouse button is not being held down,
+//    use the function resIsMouseButtonUp
 //
 // mButtonNumber - the mouse button to check, must be one of the following:
 //     - RES_MOUSE_LEFT
@@ -624,7 +622,7 @@ int resOnMouseButtonUp(enum resMouseButtonsEnum mButtonNumber)
             resController.activeButton == mButtonNumber);
 }
 
-// This function can be used to check if a specified mouse button is pressed down
+// This function can be used to check if a specified mouse button is down
 // mButtonNumber - the mouse button to check, must be one of the following:
 //     - RES_MOUSE_LEFT
 //     - RES_MOUSE_RIGHT
@@ -637,7 +635,7 @@ int resIsMouseButtonDown(enum resMouseButtonsEnum mButtonNumber)
     return (resController.mButtonState[mButtonNumber]);
 }
 
-// This function can be used to check if a specified mouse button is not pressed down
+// This function can be used to check if a specified mouse button is up
 // mButtonNumber - the mouse button to check, must be one of the following:
 //     - RES_MOUSE_LEFT
 //     - RES_MOUSE_RIGHT
@@ -1643,7 +1641,7 @@ void resUpdateMouseButtonUp(enum resMouseButtonsEnum mButtonNumber)
 // is space for before the string has to be null terminated. Rest of the source string is cropped
 // out of the concatenation.
 // destination - pointer to the string to concatenate to
-// source - pointer to the string to concatenate from
+// source - pointer to the string to concatenate
 // maxLen - the length of the longest string the array can contain
 // returns: 0 on success, 1 if some of the source string had to be cropped from concatenation
 int resSafeStrcat(char *destination, const char *source, int maxLen)
@@ -1658,10 +1656,10 @@ int resSafeStrcat(char *destination, const char *source, int maxLen)
     return (catLen < sLen); // Return 1 if some of the source string had to be left out
 }
 
-// This function makes sure that the given value is between the given boundaries
-// value - the value that is to be kept between min and max values
-// minVal - the minimum value the variable should have
-// maxVal - the maximum value the variable should have
+// This function limits a value between given boundaries
+// value - the value that is to be limited
+// minVal - the minimum value the variable can have
+// maxVal - the maximum value the variable can have
 // returns: the original value if it is between the limiting values,
 //     otherwise returns the corresponding limit value
 double resLimit(double value, double minVal, double maxVal)
@@ -1699,7 +1697,7 @@ int resCheckActorExistence(const char *actorName)
 
 // This function checks if an actor has already been added
 // to either one of the drawable actor lists
-// a - pointer to the actor which is to be checked
+// a - pointer to the actor that is to be checked
 // returns: 1 if actor is on a list, 0 if not
 int resActorIsListed(Actor *a)
 {
