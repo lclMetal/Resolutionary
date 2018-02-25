@@ -83,4 +83,6 @@ pre {
     border-radius: 15px;
     color: white;
     background-color: #9E9E9E;
+    white-space: pre-wrap;
+    overflow: auto;
 }
