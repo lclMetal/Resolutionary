@@ -43,6 +43,11 @@ h1, h2, h3 {
     padding: 1em;
 }
 
+div.important {
+    background-color: lightblue;
+    padding: 0.1em 1em;
+}
+
 .go-to-top {
     text-align: right;
 }

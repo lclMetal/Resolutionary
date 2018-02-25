@@ -38,7 +38,12 @@
             
             <div class="reference-item">
                 <h3><a href="#resChangeActorType" id="resChangeActorType">void resChangeActorType(const char *actorName, int type)</a></h3>
-                <p>Sets an actor's type that specifies how Resolutionary should handle the actor. <em>Dynamic actors</em> will be redrawn every frame, while <em>Static actors</em> will be redrawn only when requested or when the list of static actors changes (new actor is added or old deleted). <em>Not drawable actors</em> will be ignored by Resolutionary's scaling functionality.</p>
+                <p>Sets an actor's type that specifies how Resolutionary should handle the actor.</p>
+                <ul>
+                <li><em>Dynamic actors</em> are redrawn every frame</li>
+                <li><em>Static actors</em> are redrawn only when requested or when the list of static actors changes</li>
+                <li><em>Not drawable actors</em> will be ignored by Resolutionary's scaling functionality</li>
+                </ul>
                 <h3>Parameters</h3>
                 <ul>
                 <li><strong>actorName</strong> - The name or clonename of any actor in the game. Also supports "Event Actor", "Parent Actor", "Creator Actor" and "Collide Actor".</li>
@@ -71,7 +76,7 @@
                 <h3><a href="#resChangeActorParent" id="resChangeActorParent">void resChangeActorParent(const char *actorName, const char *parentName)</a></h3>
                 <p>Tells Resolutionary that an actor has a parent</p>
                 <p class="important"><strong>Important</strong><br />
-                Make sure to always use this function together with Game Editor's ChangeParent function if the parented actor is to be drawn by Resolutionary. If the system isn't notified of the change in the actor's parenting, the actor will be drawn in a wrong position.</p>
+                Remember to always use this function together with Game Editor's <a href="http://game-editor.com/docs/script_reference.htm#changeparent" title="ChangeParent(); on Game Editor script reference"><code>ChangeParent();</code></a> function if the parented actor is to be drawn by Resolutionary. If the system isn't notified of the change in the actor's parenting, the actor will be drawn in a wrong position.</p>
                 <h3>Parameters</h3>
                 <ul>
                 <li><strong>actorName</strong> - The name or clonename of the child actor. Supports "Event Actor", "Parent Actor", "Creator Actor" and "Collide Actor".</li>
@@ -100,7 +105,7 @@
                 <h3><a href="#resSetBorderColor" id="resSetBorderColor">void resSetBorderColor(int rValue, int gValue, int bValue)</a></h3>
                 <p>Sets the color of the borders that will be shown on the edges of the screen if the new resolution's aspect ratio is different from the original one's. Typically these borders are black and hence are sometimes referred to as "black bars".</p>
                 <p class="important"><strong>Important</strong><br />
-                This function has to be called before calling resStart() (i.e. before the borders are created) for the specified color to be applied on the borders.</p>
+                This function has to be called before calling <code>resStart();</code> (i.e. before the borders are created) for the specified color to be applied on the borders.</p>
                 <h3>Parameters</h3>
                 <ul>
                 <li><strong>rValue</strong> - The red color component, input a value between 0 - 255</li>
@@ -128,6 +133,9 @@
             <div class="reference-item">
                 <h3><a href="#resQuit" id="resQuit">void resQuit(void);</a></h3>
                 <p>Quits the Resolutionary system's execution, destroys all Resolutionary system actors and frees all allocated memory.</p>
+                <div class="important"><p><strong>Important</strong><br />
+                Resolutionary uses <a href="http://www.crasseux.com/books/ctutorial/Memory-allocation.html#Memory%20allocation" title="Memory allocation on The GNU C Programming Tutorial">dynamic memory allocation</a> for storing the actor lists. Normally, all memory that a process has allocated is freed when the process ends (i.e. the program or game is closed). But in Game Editor, when you're testing your game in Game Mode, exiting the Game Mode doesn't free the memory allocated by the user's code - instead, it stays allocated, creating a <a href="https://en.wikipedia.org/wiki/Memory_leak" title="Wikipedia - Memory leak">memory leak</a>.</p>
+                <p>As you enter and exit Game Mode repeatedly, Game Editor's memory consumption continues to rise. To avoid this, make sure to always call <code>resQuit();</code> before exiting Game Mode. Possibly the easiest way to do this is to add a Key Down event calling <code>resQuit();</code> and then adding a Key Up event for the same key, calling <a href="http://game-editor.com/docs/script_reference.htm#exitgame" title="ExitGame(); on Game Editor script reference"><code>ExitGame();</code></a> to exit back to Editor Mode. Note that unfortunately you can't use the escape key for this, because escape is Game Editor's default exit key, and pressing it causes the game to exit instantly without processing any code placed in a Key Down event for the escape key.</p></div>
                 <h3>Example call</h3>
                 <pre class="prettyprint"><code>resQuit(); // Quit Resolutionary</code></pre>
                 <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
@@ -136,12 +144,12 @@
             <div class="reference-item">
                 <h3><a href="#resOnMouseClick" id="resOnMouseClick">int resOnMouseClick(enum resMouseButtonsEnum mButtonNumber)</a></h3>
                 <p>Checks if a specified mouse button was just pressed down on the actor calling this function. This function is meant to be used as a way to replicate Game Editor's default mouse click behavior where only the actor with the highest z depth at the cursor's position reacts to mouse input.</p>
-                <p class="important"><strong>Important</strong><br />
+                <div class="important"><p><strong>Important</strong><br />
                 Due to the way Resolutionary's mouse input works, this function can only be used in an Activation Event from resMouseClickDetector.</p>
                 <ul>
                 <li>For more information, see Support [[link here]]</li>
                 <li>For checking if a specified mouse button is being held down, use the function <a href="#resIsMouseButtonDown">resIsMouseButtonDown</a>.</li>
-                </ul>
+                </ul></div>
                 <h3>Parameters</h3>
                 <ul>
                 <li><strong>mButtonNumber</strong> - The mouse button to check, must be one of the following:
@@ -169,12 +177,12 @@ if (resOnMouseClick(RES_MOUSE_LEFT)) // If the left mouse button was just clicke
             <div class="reference-item">
                 <h3><a href="#resOnMouseRelease" id="resOnMouseRelease">int resOnMouseRelease(enum resMouseButtonsEnum mButtonNumber)</a></h3>
                 <p>Checks if a specified mouse button was just released on the actor calling this function. This function is meant to be used as a way to replicate Game Editor's default mouse click behavior where only the actor with the highest z depth at the cursor's position reacts to mouse input.</p>
-                <p class="important"><strong>Important</strong><br />
+                <div class="important"><p><strong>Important</strong><br />
                 Due to the way Resolutionary's mouse input works, this function can only be used in an Activation Event from resMouseClickDetector.</p>
                 <ul>
                 <li>For more information, see Support [[link here]]</li>
                 <li>For checking if a specified mouse button is not being held down, use the function <a href="#resIsMouseButtonUp">resIsMouseButtonUp</a>.</li>
-                </ul>
+                </ul></div>
                 <h3>Parameters</h3>
                 <ul>
                 <li><strong>mButtonNumber</strong> - The mouse button to check, must be one of the following:
@@ -202,12 +210,12 @@ if (resOnMouseRelease(RES_MOUSE_LEFT)) // If the left mouse button was just rele
             <div class="reference-item">
                 <h3><a href="#resOnMouseButtonDown" id="resOnMouseButtonDown">int resOnMouseButtonDown(enum resMouseButtonsEnum mButtonNumber)</a></h3>
                 <p>Checks if a specified mouse button was just pressed down.</p>
-                <p class="important"><strong>Important</strong><br />
+                <div class="important"><p><strong>Important</strong><br />
                 Due to the way Resolutionary's mouse input works, this function can only be used in an Activation Event from resMouseClickDetector.</p>
                 <ul>
                 <li>For more information, see Support [[link here]]</li>
                 <li>For checking if a specified mouse button is being held down, use the function <a href="#resIsMouseButtonDown">resIsMouseButtonDown</a>.</li>
-                </ul>
+                </ul></div>
                 <h3>Parameters</h3>
                 <ul>
                 <li><strong>mButtonNumber</strong> - The mouse button to check, must be one of the following:
@@ -235,12 +243,12 @@ if (resOnMouseButtonDown(RES_MOUSE_LEFT)) // If the left mouse button was just p
             <div class="reference-item">
                 <h3><a href="#resOnMouseButtonUp" id="resOnMouseButtonUp">int resOnMouseButtonUp(enum resMouseButtonsEnum mButtonNumber)</a></h3>
                 <p>Checks if a specified mouse button was just released.</p>
-                <p class="important"><strong>Important</strong><br />
+                <div class="important"><p><strong>Important</strong><br />
                 Due to the way Resolutionary's mouse input works, this function can only be used in an Activation Event from resMouseClickDetector.</p>
                 <ul>
                 <li>For more information, see Support [[link here]]</li>
                 <li>For checking if a specified mouse button is not being held down, use the function <a href="#resIsMouseButtonUp">resIsMouseButtonUp</a>.</li>
-                </ul>
+                </ul></div>
                 <h3>Parameters</h3>
                 <ul>
                 <li><strong>mButtonNumber</strong> - The mouse button to check, must be one of the following:
@@ -327,13 +335,15 @@ if (resOnMouseButtonUp(RES_MOUSE_LEFT)) // If the left mouse button was just rel
             
             <div class="reference-item">
                 <h3><a href="#resCreateActorObjectList" id="resCreateActorObjectList">resActorObject *resCreateActorObjectList(Actor *a)</a></h3>
-                <p>Creates the linked lists for the drawable dynamic and static actors.</p>
+                <p>Creates the linked lists for the drawable dynamic and static actors. This function is automatically called by Resolutionary, if <code>resAddActorObject();</code> is trying to add an actor to an empty list.</p>
+                <p class="important"><strong>Important</strong><br />
+                This function should not be called manually. Using the function incorrectly can lead to a memory leak.</p>
                 <h3>Parameters</h3>
                 <ul>
                 <li><strong>a</strong> - Pointer to the actor to be added to the list</li>
                 </ul>
                 <h3>Return value</h3>
-                <p>A pointer to the first actor object added to the new list, NULL on failure.</p>
+                <p>A pointer to the first actor object added to the new list, <code>NULL</code> on failure.</p>
                 <h3>Example call</h3>
                 <pre class="prettyprint"><code>resCreateActorObjectList(&amp;collide); // Add collide actor to the list as its first object</code></pre>
                 <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
@@ -347,7 +357,7 @@ if (resOnMouseButtonUp(RES_MOUSE_LEFT)) // If the left mouse button was just rel
                 <li><strong>a</strong> - Pointer to the actor to be added to the list</li>
                 </ul>
                 <h3>Return value</h3>
-                <p>A pointer to the actor object added to the list, NULL on failure.</p>
+                <p>A pointer to the actor object added to the list, <code>NULL</code> on failure.</p>
                 <h3>Example call</h3>
                 <pre class="prettyprint"><code>resAddActorObject(&amp;collide); // Add collide actor to the list</code></pre>
                 <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
@@ -361,10 +371,10 @@ if (resOnMouseButtonUp(RES_MOUSE_LEFT)) // If the left mouse button was just rel
                 <h3>Parameters</h3>
                 <ul>
                 <li><strong>a</strong> - Pointer to the actor to be searched from the list</li>
-                <li><strong>prev</strong> - Pointer to a pointer to an actor object for returning the address of the previous actor object in the list. If there's no need for a pointer to the previous object, just input NULL</li>
+                <li><strong>prev</strong> - Pointer to a pointer to an actor object for returning the address of the previous actor object in the list. If there's no need for a pointer to the previous object, just input <code>NULL</code></li>
                 </ul>
                 <h3>Return value</h3>
-                <p>A pointer to the actor object that corresponds to the given actor, NULL if no match found. Also returns a pointer to the preceding object in the list, this pointer is returned via the argument <code>prev</code>.</p>
+                <p>A pointer to the actor object that corresponds to the given actor, <code>NULL</code> if no match found. Also returns a pointer to the preceding object in the list, this pointer is returned via the argument <code>prev</code>.</p>
                 <h3>Example call</h3>
 <pre class="prettyprint">
 <code>resActorObject *del = NULL;  // Pointer to the actor object to delete
@@ -395,10 +405,10 @@ resDeleteActorObjectByPointer(del, prev);                // Delete the actor obj
                 <h3>Parameters</h3>
                 <ul>
                 <li><strong>del</strong> - Pointer to the actor object to be deleted from the list</li>
-                <li><strong>prev</strong> - Pointer to the preceding actor object in the list (or NULL if there's none)</li>
+                <li><strong>prev</strong> - Pointer to the preceding actor object in the list (or <code>NULL</code> if there's none)</li>
                 </ul>
                 <h3>Return value</h3>
-                <p>1 on success, 0 if <code>del</code> is NULL</p>
+                <p>1 on success, 0 if <code>del</code> is <code>NULL</code></p>
                 <h3>Example call</h3>
 <pre class="prettyprint">
 <code>resActorObject *del = NULL;  // Pointer to the actor object to delete
@@ -411,14 +421,16 @@ resDeleteActorObjectByPointer(del, prev);                // Delete the actor obj
             
             <div class="reference-item">
                 <h3><a href="#resUnlinkActorObject" id="resUnlinkActorObject">int resUnlinkActorObject(resActorObject *del, resActorObject *prev)</a></h3>
-                <p>Removes an actor object's linking from the list.</p>
+                <p>Removes an actor object's linking from the list. This function is called by Resolutionary when deleting an actor object.</p>
+                <p class="important"><strong>Important</strong><br />
+                This function should not be called manually. Using the function incorrectly can lead to a memory leak.</p>
                 <h3>Parameters</h3>
                 <ul>
                 <li><strong>del</strong> - Pointer to the actor object to be unlinked</li>
-                <li><strong>prev</strong> - Pointer to the preceding actor object in the list (or NULL if there's none)</li>
+                <li><strong>prev</strong> - Pointer to the preceding actor object in the list (or <code>NULL</code> if there's none)</li>
                 </ul>
                 <h3>Return value</h3>
-                <p>1 on success, 0 if <code>del</code> is NULL</p>
+                <p>1 on success, 0 if <code>del</code> is <code>NULL</code></p>
                 <h3>Example call</h3>
 <pre class="prettyprint">
 <code>resActorObject *del = NULL;  // Pointer to the actor object to delete
@@ -485,6 +497,8 @@ del = NULL;    // Clear pointer</code></pre>
                 <li>Top actor for every mouse button held down. In practice this means only right, left and middle mouse buttons, as mouse wheel up and down can't be held down</li>
                 <li>All clicked actors for every mouse button held down. Again, only right, left and middle buttons actually show any values, as mouse wheel up and down can't be held down</li>
                 </ul>
+                <p class="important"><strong>Important</strong><br />
+                The debug overlay can only be drawn if the constant <code>RES_DEBUG</code> is 1.</p>
                 <h3>Example call</h3>
                 <pre class="prettyprint"><code>resDisplayDebugOverlay(); // Display the debug overlay</code></pre>
                 <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
@@ -492,7 +506,7 @@ del = NULL;    // Clear pointer</code></pre>
             
             <div class="reference-item">
                 <h3><a href="#resUpdateMouse" id="resUpdateMouse">void resUpdateMouse(void)</a></h3>
-                <p>Updates Resolutionary's mouse position. Also updates the variables resXmouse and resYmouse that should be used for reading mouse position instead of the usual xmouse and ymouse.</p>
+                <p>Updates Resolutionary's mouse position. Also updates the variables <code>resXmouse</code> and <code>resYmouse</code> that should be used for reading mouse position instead of the usual <code>xmouse</code> and <code>ymouse</code>.</p>
                 <h3>Example call</h3>
                 <pre class="prettyprint"><code>resUpdateMouse(); // Update Resolutionary's mouse</code></pre>
                 <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
