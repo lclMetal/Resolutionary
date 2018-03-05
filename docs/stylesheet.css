@@ -13,6 +13,20 @@ h1, h2, h3 {
     margin: 0 auto;
 }
 
+.download-button {
+    padding: 1em;
+    border-radius: 10px;
+    border-color: green;
+    border-width: 1px;
+    background-color: limegreen;
+    color: white;
+    font-size: 1.2em;
+}
+
+.download-button:hover {
+    background-color: lime;
+}
+
 .flex {
     display: flex;
     flex-wrap: wrap;
