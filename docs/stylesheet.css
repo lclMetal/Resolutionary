@@ -14,15 +14,15 @@ h1, h2, h3 {
 }
 
 .download-button:link, .download-button:visited {
-	display: block;
-	max-width: 250px;
-	text-align: center;
+    display: block;
+    max-width: 250px;
+    text-align: center;
     padding: 1em;
-	margin: 0;
+    margin: 0;
     border-radius: 10px;
     background-color: limegreen;
     color: white;
-	text-shadow: 1px 1px black;
+    text-shadow: 1px 1px black;
     font-size: 1.2em;
 }
 
@@ -45,7 +45,7 @@ h1, h2, h3 {
 }
 
 .flex div:hover {
-	box-shadow: 5px 5px 3px gray;
+    box-shadow: 5px 5px 3px gray;
 }
 
 .reference-category {
@@ -60,9 +60,9 @@ h1, h2, h3 {
 }
 
 .content-box {
-	background-color: white;
-	padding: 0.5em 2em;
-	margin: 1em 5em;
+    background-color: white;
+    padding: 0.5em 2em;
+    margin: 1em 5em;
 }
 
 .important {
@@ -115,19 +115,19 @@ pre {
 }
 
 img {
-	max-width: 30%;
+    max-width: 30%;
 }
 
 .left {
-	float: left;
-	margin-right: 2em;
+    float: left;
+    margin-right: 2em;
 }
 
 .right {
-	float: right;
-	margin: 0;
+    float: right;
+    margin: 0;
 }
 
 .clearfix {
-	clear: both;
+    clear: both;
 }
