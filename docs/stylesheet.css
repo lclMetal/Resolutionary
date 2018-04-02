@@ -9,17 +9,20 @@ h1, h2, h3 {
 }
 
 #page-wrap {
-    max-width: 1400px;
+    max-width: 1000px;/*1400px;*/
     margin: 0 auto;
 }
 
-.download-button {
+.download-button:link, .download-button:visited {
+	display: block;
+	max-width: 250px;
+	text-align: center;
     padding: 1em;
+	margin: 0;
     border-radius: 10px;
-    border-color: green;
-    border-width: 1px;
     background-color: limegreen;
     color: white;
+	text-shadow: 1px 1px black;
     font-size: 1.2em;
 }
 
@@ -41,6 +44,10 @@ h1, h2, h3 {
     padding: 0 1em;
 }
 
+.flex div:hover {
+	box-shadow: 5px 5px 3px gray;
+}
+
 .reference-category {
     background-color: white;
     padding: 0.5em 1.5em;
@@ -50,6 +57,12 @@ h1, h2, h3 {
     background-color: white;
     padding: 0.5em 2em;
     margin: 1em 0;
+}
+
+.content-box {
+	background-color: white;
+	padding: 0.5em 2em;
+	margin: 1em 5em;
 }
 
 .important {
@@ -66,7 +79,7 @@ div.important {
     text-align: right;
 }
 
-li {
+ul li {
     list-style-type: circle;
 }
 
@@ -99,4 +112,22 @@ pre {
     background-color: #9E9E9E;
     white-space: pre-wrap;
     overflow: auto;
+}
+
+img {
+	max-width: 30%;
+}
+
+.left {
+	float: left;
+	margin-right: 2em;
+}
+
+.right {
+	float: right;
+	margin: 0;
+}
+
+.clearfix {
+	clear: both;
 }
