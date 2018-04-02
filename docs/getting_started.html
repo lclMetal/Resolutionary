@@ -3,58 +3,58 @@
     <head>
         <meta charset="UTF-8" />
         <link href="stylesheet.css" rel="StyleSheet" type="text/css" />
-		<!-- <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script> -->
+        <!-- <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script> -->
         <title>Getting started - Resolutionary documentation</title>
     </head>
     <body>
         <div id="page-wrap">
-			<div class="content-box">
-				<h1>Getting started</h1>
-				
-				<p class="right"><a href="https://github.com/lclMetal/Resolutionary/archive/master.zip" class="download-button">Download Resolutionary</a></p>
-				<p>Start by getting the latest version of Resolutionary by clicking the "Download Resolutionary" button.</p>
-				<p><strong>OR</strong></p>
-				<p>Get <a href="https://github.com/lclMetal/Resolutionary/" title="Resolutionary on GitHub">Resolutionary from GitHub</a> (Clone or download -> Download ZIP)</p>
-				
-				<h2>Index</h2>
-				
-				<ul>
-					<li><a href="#getting-started-id">Getting started</a></li>
-					<li><a href="#initial-configuration-id">Initial configuration</a></li>
-					<li><a href="#changing-resolution-id">Changing the resolution</a></li>
-					<li><a href="#make-compatible-id">Making your project Resolutionary compatible</a></li>
-				</ul>
-				
-				<div class="clearfix"></div>
-			</div>
+            <div class="content-box">
+                <h1>Getting started</h1>
+                
+                <p class="right"><a href="https://github.com/lclMetal/Resolutionary/archive/master.zip" class="download-button">Download Resolutionary</a></p>
+                <p>Start by getting the latest version of Resolutionary by clicking the "Download Resolutionary" button.</p>
+                <p><strong>OR</strong></p>
+                <p>Get <a href="https://github.com/lclMetal/Resolutionary/" title="Resolutionary on GitHub">Resolutionary from GitHub</a> (Clone or download -> Download ZIP)</p>
+                
+                <h2>Index</h2>
+                
+                <ul>
+                    <li><a href="#getting-started-id">Getting started</a></li>
+                    <li><a href="#initial-configuration-id">Initial configuration</a></li>
+                    <li><a href="#changing-resolution-id">Changing the resolution</a></li>
+                    <li><a href="#make-compatible-id">Making your project Resolutionary compatible</a></li>
+                </ul>
+                
+                <div class="clearfix"></div>
+            </div>
             
-			<div class="content-box" id="getting-started-id">
-				<h2>1. Getting started</h2>
-				
-				<p>Instructions on how to get Resolutionary, and how to merge it into your game.</p>
-				
-				<ol>
-					<li>Download the most up-to-date version of Resolutionary as a .zip package via the link above.</li>
-					<li>Use a program like WinRAR or 7-Zip to extract the files from the .zip.</li>
-					<li>Open your game in Game Editor.</li>
-					<li>Select File -> Merge and navigate to the folder where you extracted the files from the .zip. Select "Resolutionary_template.ged" as the file to be merged into your game. It can be found inside the folder "Template".</li>
-				</ol>
-			</div>
-			
-			<div class="content-box" id ="initial-configuration-id">
-				<h2>2. Initial configuration</h2>
-				
-				<p>These are the steps that you have to take after merging Resolutionary to your game for deploying the system.</p>
-				
-				<ol>
-					<li>(Optional) Use <a href="code.html#resSetBackgroundColor" title="resSetBackgroundColor(); on Resolutionary reference page"><code>resSetBackgroundColor();</code></a> to set a background color for your game. If you don't specify a color, the color black will be used by default.</li>
-					<li>(Optional) Use <a href="code.html#resSetBorderColor" title="resSetBorderColor(); on Resolutionary reference page"><code>resSetBorderColor();</code></a> to set a color for the borders that will appear if the game is scaled to a resolution with an aspect ratio differing from the original resolution. These borders are often called "black bars", but you can use any color you like. If you don't specify a color, the color black will be used by default.</li>
-					<li>Use <a href="code.html#resStart" title="resStart(); on Resolutionary reference page"><code>resStart();</code></a> to start the Resolutionary system.</li>
-					<li>Use <a href="code.html#resQuit" title="resQuit(); on Resolultionary reference page"><code>resQuit();</code></a> in a Key Down event of your choice (excluding Esc) to quit the Resolutionary system before exiting the Game Editor game mode. An exported game doesn't need this event, but for testing your game in Game Editor this is important for avoiding memory leaks. More information can be found on the <a href="code.html#resQuit">Resolutionary Reference page</a>.</li>
-					<li>Resize the Filled Region actor called <code>resActorDetector</code> by dragging its corner so that it is the same size as the view actor in the original resolution of the game.</li>
-				</ol>
-				
-				<p>The calls to <code>resSetBackgroundColor();</code>, <code>resSetBorderColor();</code> and <code>resStart();</code> can, for example, be placed in the Create Actor event of view, so that the system will start up at the same moment as the game itself.</p>
+            <div class="content-box" id="getting-started-id">
+                <h2>1. Getting started</h2>
+                
+                <p>Instructions on how to get Resolutionary, and how to merge it into your game.</p>
+                
+                <ol>
+                    <li>Download the most up-to-date version of Resolutionary as a .zip package via the link above.</li>
+                    <li>Use a program like WinRAR or 7-Zip to extract the files from the .zip.</li>
+                    <li>Open your game in Game Editor.</li>
+                    <li>Select File -> Merge and navigate to the folder where you extracted the files from the .zip. Select "Resolutionary_template.ged" as the file to be merged into your game. It can be found inside the folder "Template".</li>
+                </ol>
+            </div>
+            
+            <div class="content-box" id ="initial-configuration-id">
+                <h2>2. Initial configuration</h2>
+                
+                <p>These are the steps that you have to take after merging Resolutionary to your game for deploying the system.</p>
+                
+                <ol>
+                    <li>(Optional) Use <a href="code.html#resSetBackgroundColor" title="resSetBackgroundColor(); on Resolutionary reference page"><code>resSetBackgroundColor();</code></a> to set a background color for your game. If you don't specify a color, the color black will be used by default.</li>
+                    <li>(Optional) Use <a href="code.html#resSetBorderColor" title="resSetBorderColor(); on Resolutionary reference page"><code>resSetBorderColor();</code></a> to set a color for the borders that will appear if the game is scaled to a resolution with an aspect ratio differing from the original resolution. These borders are often called "black bars", but you can use any color you like. If you don't specify a color, the color black will be used by default.</li>
+                    <li>Use <a href="code.html#resStart" title="resStart(); on Resolutionary reference page"><code>resStart();</code></a> to start the Resolutionary system.</li>
+                    <li>Use <a href="code.html#resQuit" title="resQuit(); on Resolultionary reference page"><code>resQuit();</code></a> in a Key Down event of your choice (excluding Esc) to quit the Resolutionary system before exiting the Game Editor game mode. An exported game doesn't need this event, but for testing your game in Game Editor this is important for avoiding memory leaks. More information can be found on the <a href="code.html#resQuit">Resolutionary Reference page</a>.</li>
+                    <li>Resize the Filled Region actor called <code>resActorDetector</code> by dragging its corner so that it is the same size as the view actor in the original resolution of the game.</li>
+                </ol>
+                
+                <p>The calls to <code>resSetBackgroundColor();</code>, <code>resSetBorderColor();</code> and <code>resStart();</code> can, for example, be placed in the Create Actor event of view, so that the system will start up at the same moment as the game itself.</p>
 <pre class="prettyprint">
 <code>// view -> Create Actor
 
@@ -62,44 +62,44 @@ resSetBackgroundColor(128, 128, 128); // Make the background gray
 resSetBorderColor(0, 0, 0);           // Make the borders black
 resStart(640, 480);                   // Start Resolutionary (the original resolution of the game is 640 x 480)
 </code></pre>
-			</div>
+            </div>
             
-			<div class="content-box" id="changing-resolution-id">
-				<h2>3. Changing the resolution</h2>
-				
-				<p>These are the steps that you have to take every time you want to change the resolution of your game.</p>
-				
-				<ol>
-					<li>Set the resolution of your choice for the game from <em>Config -> Game Properties -> Game resolution</em>.</li>
-					<li>Resize the actors <em>resDynamicLayerCanvas</em> and <em>resStaticLayerCanvas</em> so that they are the same size as the view actor.</li>
-				</ol>
-			</div>
-			
-			<div class="content-box" id="make-compatible-id">
-				<h2>4. Making your project Resolutionary compatible</h2>
-				
-				<p>In order to have your game function correctly after changing its resolution with Resolutionary, you'll have to make some changes in it.</p>
-				
-				<ul>
-					<li>Actions in <em>Out of Vision</em> events have to be moved to <em>Collision Finish</em> from <code>resActorDetector</code>.</li>
-					<li>Actions in <em>Mouse Enter</em> events have to be moved to <em>Collision</em> with <code>resMouse</code>.</li>
-					<li>Actions in <em>Mouse Leave</em> events have to be moved to <em>Collision Finish</em> from <code>resMouse</code>.</li>
-					<li>Actions in <em>Mouse Button Down</em> events have to be  moved to <em>Activation Event</em> from <code>resMouseClickDetector</code>.
-					<ul>
-						<li>For further info, see functions 
-						<a href="code.html#resOnMouseClick"><code>resOnMouseClick();</code></a>, 
-						<a href="code.html#resOnMouseButtonDown"><code>resOnMouseButtonDown();</code></a> and 
-						<a href="code.html#resIsMouseButtonDown"><code>resIsMouseButtonDown();</code></a>.</li>
-					</ul></li>
-					<li>Actions in <em>Mouse Button Up</em> events have to be moved to <em>Activation Event</em> from <code>resMouseClickDetector</code>.
-					<ul>
-						<li>For further info, see functions 
-						<a href="code.html#resOnMouseRelease"><code>resOnMouseRelease();</code></a>, 
-						<a href="code.html#resOnMouseButtonUp"><code>resOnMouseButtonUp();</code></a>, and 
-						<a href="code.html#resIsMouseButtonUp"><code>resIsMouseButtonUp();</code></a>.</li>
-					</ul></li>
-				</ul>
-			</div>
+            <div class="content-box" id="changing-resolution-id">
+                <h2>3. Changing the resolution</h2>
+                
+                <p>These are the steps that you have to take every time you want to change the resolution of your game.</p>
+                
+                <ol>
+                    <li>Set the resolution of your choice for the game from <em>Config -> Game Properties -> Game resolution</em>.</li>
+                    <li>Resize the actors <em>resDynamicLayerCanvas</em> and <em>resStaticLayerCanvas</em> so that they are the same size as the view actor.</li>
+                </ol>
+            </div>
+            
+            <div class="content-box" id="make-compatible-id">
+                <h2>4. Making your project Resolutionary compatible</h2>
+                
+                <p>In order to have your game function correctly after changing its resolution with Resolutionary, you'll have to make some changes in it.</p>
+                
+                <ul>
+                    <li>Actions in <em>Out of Vision</em> events have to be moved to <em>Collision Finish</em> from <code>resActorDetector</code>.</li>
+                    <li>Actions in <em>Mouse Enter</em> events have to be moved to <em>Collision</em> with <code>resMouse</code>.</li>
+                    <li>Actions in <em>Mouse Leave</em> events have to be moved to <em>Collision Finish</em> from <code>resMouse</code>.</li>
+                    <li>Actions in <em>Mouse Button Down</em> events have to be  moved to <em>Activation Event</em> from <code>resMouseClickDetector</code>.
+                    <ul>
+                        <li>For further info, see functions 
+                        <a href="code.html#resOnMouseClick"><code>resOnMouseClick();</code></a>, 
+                        <a href="code.html#resOnMouseButtonDown"><code>resOnMouseButtonDown();</code></a> and 
+                        <a href="code.html#resIsMouseButtonDown"><code>resIsMouseButtonDown();</code></a>.</li>
+                    </ul></li>
+                    <li>Actions in <em>Mouse Button Up</em> events have to be moved to <em>Activation Event</em> from <code>resMouseClickDetector</code>.
+                    <ul>
+                        <li>For further info, see functions 
+                        <a href="code.html#resOnMouseRelease"><code>resOnMouseRelease();</code></a>, 
+                        <a href="code.html#resOnMouseButtonUp"><code>resOnMouseButtonUp();</code></a>, and 
+                        <a href="code.html#resIsMouseButtonUp"><code>resIsMouseButtonUp();</code></a>.</li>
+                    </ul></li>
+                </ul>
+            </div>
         </div>
     </body>
 </html>
