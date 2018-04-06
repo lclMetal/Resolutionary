@@ -4,6 +4,4 @@ Resolutionary is a system for scaling games made with [Game Editor](http://www.g
 
 ## Documentation
 
-As of now, Resolutionary lacks a comprehensive documentation, but fear not - one is in the making.
-
-[Resolutionary documentation](https://lclmetal.github.io/Resolutionary/code.html) (WIP, for now, this link takes straight to the reference page as rest of the site is not done yet)
+The [Resolutionary documentation website](https://lclmetal.github.io/Resolutionary/) is a work in progress and not done yet, but you can already find some useful information on the "Usage guide" and "Reference" pages.
