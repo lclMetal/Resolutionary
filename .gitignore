@@ -1,3 +1,5 @@
 # Ignore Game Editor undo files
 *.ged.undo
 icons.svg
+*.xcf
+

@@ -10,21 +10,22 @@ h1, h2, h3 {
 
 #page-wrap {
     max-width: 1200px;
-    /* max-width: 1400px; */
     margin: 0 auto;
 }
 
-.download-button:link, .download-button:visited {
+.download-button {
     display: block;
-    max-width: 250px;
     text-align: center;
     padding: 1em;
     margin: 0;
     border-radius: 10px;
-    background-color: limegreen;
-    color: white;
     text-shadow: 1px 1px black;
     font-size: 1.2em;
+}
+
+.download-button:link, .download-button:visited {
+    background-color: limegreen;
+    color: white;
 }
 
 .download-button:hover {
@@ -44,18 +45,6 @@ h1, h2, h3 {
     flex-grow: 1;
     flex-shrink: 1;
     box-sizing: border-box;
-}
-
-@media all and (max-width: 850px) {
-    .flex > div {
-        flex-basis: 50%;
-    }
-}
-
-@media all and (max-width: 400px) {
-    .flex > div {
-        flex-basis: 100%;
-    }
 }
 
 .box-link img {
@@ -92,21 +81,35 @@ h1, h2, h3 {
     padding: 0.5em 1.5em;
 }
 
-/* .reference-item {
-    background-color: white;
-    padding: 0.5em 2em;
-    margin: 1em 0;
-} */
-
 .content-box {
     background-color: white;
     padding: 0.5em 2em;
-    /* margin: 1em 5em; */
     margin: 1em 0;
+    overflow: auto;
+}
+
+.content-box ol, .content-box ul {
+    padding-left: 2.5em;
 }
 
 .content-box ol li {
     padding: 0.5em 0;
+}
+
+.screenshot-box {
+    text-align: center;
+    padding: 1em;
+    max-width: 50%;
+}
+
+.screenshot-box img {
+    max-width: 80%;
+}
+
+.screenshot-box p {
+    margin: 0.5em 0;
+    padding: 0 1em;
+    font-style: italic;
 }
 
 .important {
@@ -168,6 +171,52 @@ pre {
     margin: 0;
 }
 
-.clearfix {
-    clear: both;
+
+
+@media all and (max-width: 850px) {
+    .flex > div {
+        flex-basis: 50%;
+    }
+    
+    .content-box {
+        background-color: white;
+        padding: 0.5em 1em;
+        margin: 1em 0;
+    }
+    
+    .content-box ol, .content-box ul {
+        padding-left: 1.5em;
+    }
+    
+    .screenshot-box {
+        text-align: center;
+        padding: 1em;
+        max-width: 100%;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .flex > div {
+        flex-basis: 100%;
+    }
+    
+    .content-box {
+        background-color: white;
+        padding: 0.5em 0.5em;
+        margin: 1em 0;
+    }
+    
+    .content-box ol, .content-box ul {
+        padding-left: 1em;
+    }
+    
+    .screenshot-box {
+        text-align: center;
+        padding: 0;
+        max-width: 100%;
+    }
+    
+    .screenshot-box img {
+        max-width: 100%;
+    }
 }
