@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <link href="stylesheet.css" rel="StyleSheet" type="text/css" />
+    <link href="../stylesheet.css" rel="StyleSheet" type="text/css" />
     <!-- <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script> -->
     <title>Reference - Resolutionary documentation</title>
 </head>
@@ -10,7 +10,7 @@
     <div id="page-wrap">
         <h1>Reference</h1>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h2>Table of contents</h2>
 
             <ul>
@@ -81,7 +81,7 @@
 
         <h2 id="variables" class="reference-category">Variables</h2>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resmouseVars" id="resmouseVars">int resXmouse, int resYmouse</a></h3>
             <p>
                 Global variables used for providing the relative mouse coordinates according to the scale. Use these variables in place of xmouse and ymouse.
@@ -93,7 +93,7 @@
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resActorType" id="resActorType">int resActorType</a></h3>
             <p>
                 An <em>actor variable</em> used for storing an actor's type.
@@ -105,7 +105,7 @@
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resActorZLayer" id="resActorZLayer">int resActorZLayer</a></h3>
             <p>
                 An <em>actor variable</em> used for managing an actor's depth in the drawing order.
@@ -117,7 +117,7 @@
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resHasParent" id="resHasParent">int resHasParent</a></h3>
             <p>
                 An <em>actor variable</em> used for telling Resolutionary whether an actor has a parent or not. This information is crucial for knowing whether the actor's coordinates should be interpreted as absolute or as relative to another actor.
@@ -129,7 +129,7 @@
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resParentName" id="resParentName">char resParentName[256]</a></h3>
             <p>
                 An <em>actor variable</em> used for fetching a pointer to an actor's parent when needed.
@@ -141,7 +141,7 @@
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resIsOnActorObjectList" id="resIsOnActorObjectList">int resIsOnActorObjectList</a></h3>
             <p>
                 An <em>actor variable</em> used for telling Resolutionary whether an actor is already listed or not.
@@ -155,7 +155,7 @@
 
         <h2 id="userFunctions" class="reference-category">User functions</h2>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resChangeActorType" id="resChangeActorType">void resChangeActorType(const char *actorName, int type)</a></h3>
             <p>
                 Sets an actor's type that specifies how Resolutionary should handle the actor.
@@ -180,7 +180,7 @@
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resChangeActorZLayer" id="resChangeActorZLayer">void resChangeActorZLayer(const char *actorName, int zLayer)</a></h3>
             <p>
                 Sets an actor's z layer. Actors are drawn in order by their z layer, from lowest to highest. So, actors with a higher z layer will be drawn on top of the actors with a lower z layer. The number of an actor's z layer can be positive or negative.
@@ -195,7 +195,7 @@
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resChangeActorParent" id="resChangeActorParent">void resChangeActorParent(const char *actorName, const char *parentName)</a></h3>
             <p>
                 Tells Resolutionary that an actor has a parent
@@ -214,7 +214,7 @@
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resSetBackgroundColor" id="resSetBackgroundColor">void resSetBackgroundColor(int rValue, int gValue, int bValue)</a></h3>
             <p>
                 Sets the background color of the game, it might be desirable to set it to be the same as the project's background color in Config -> Game properties -> Game background color.
@@ -230,7 +230,7 @@
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resSetBorderColor" id="resSetBorderColor">void resSetBorderColor(int rValue, int gValue, int bValue)</a></h3>
             <p>
                 Sets the color of the borders that will be shown on the edges of the screen if the new resolution's aspect ratio is different from the original one's. Typically these borders are black and hence are sometimes referred to as "black bars".
@@ -250,7 +250,7 @@
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resStart" id="resStart">void resStart(int originalWidth, int originalHeight)</a></h3>
             <p>
                 Creates the Resolutionary system actors and initializes and starts the system.
@@ -265,7 +265,7 @@
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resQuit" id="resQuit">void resQuit(void);</a></h3>
             <p>
                 Quits the Resolutionary system's execution, destroys all Resolutionary system actors and frees all allocated memory.
@@ -284,7 +284,7 @@
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resOnMouseClick" id="resOnMouseClick">int resOnMouseClick(enum resMouseButtonsEnum mButtonNumber)</a></h3>
             <p>
                 Checks if a specified mouse button was just pressed down on the actor calling this function. This function is meant to be used as a way to replicate Game Editor's default mouse click behavior where only the actor with the highest z depth at the cursor's position reacts to mouse input.
@@ -325,7 +325,7 @@ if (resOnMouseClick(RES_MOUSE_LEFT)) // If the left mouse button was just clicke
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resOnMouseRelease" id="resOnMouseRelease">int resOnMouseRelease(enum resMouseButtonsEnum mButtonNumber)</a></h3>
             <p>
                 Checks if a specified mouse button was just released on the actor calling this function. This function is meant to be used as a way to replicate Game Editor's default mouse click behavior where only the actor with the highest z depth at the cursor's position reacts to mouse input.
@@ -366,7 +366,7 @@ if (resOnMouseRelease(RES_MOUSE_LEFT)) // If the left mouse button was just rele
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resOnMouseButtonDown" id="resOnMouseButtonDown">int resOnMouseButtonDown(enum resMouseButtonsEnum mButtonNumber)</a></h3>
             <p>
                 Checks if a specified mouse button was just pressed down.
@@ -407,7 +407,7 @@ if (resOnMouseButtonDown(RES_MOUSE_LEFT)) // If the left mouse button was just p
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resOnMouseButtonUp" id="resOnMouseButtonUp">int resOnMouseButtonUp(enum resMouseButtonsEnum mButtonNumber)</a></h3>
             <p>
                 Checks if a specified mouse button was just released.
@@ -448,7 +448,7 @@ if (resOnMouseButtonUp(RES_MOUSE_LEFT)) // If the left mouse button was just rel
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resIsMouseButtonDown" id="resIsMouseButtonDown">int resIsMouseButtonDown(enum resMouseButtonsEnum mButtonNumber)</a></h3>
             <p>
                 Checks if a specified mouse button is down.
@@ -477,7 +477,7 @@ if (resOnMouseButtonUp(RES_MOUSE_LEFT)) // If the left mouse button was just rel
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resIsMouseButtonUp" id="resIsMouseButtonUp">int resIsMouseButtonUp(enum resMouseButtonsEnum mButtonNumber)</a></h3>
             <p>
                 Checks if a specified mouse button is up.
@@ -506,7 +506,7 @@ if (resOnMouseButtonUp(RES_MOUSE_LEFT)) // If the left mouse button was just rel
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resRequestStaticLayerUpdate" id="resRequestStaticLayerUpdate">void resRequestStaticLayerUpdate(void);</a></h3>
             <p>
                 Tells Resolutionary to redraw the static layer.
@@ -518,7 +518,7 @@ if (resOnMouseButtonUp(RES_MOUSE_LEFT)) // If the left mouse button was just rel
 
         <h2 id="systemFunctions" class="reference-category">System's internal functions</h2>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resCreateActorObjectList" id="resCreateActorObjectList">resActorObject *resCreateActorObjectList(Actor *a)</a></h3>
             <p>
                 Creates the linked lists for the drawable dynamic and static actors. This function is automatically called by Resolutionary, if <code>resAddActorObject();</code> is trying to add an actor to an empty list.
@@ -540,7 +540,7 @@ if (resOnMouseButtonUp(RES_MOUSE_LEFT)) // If the left mouse button was just rel
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resAddActorObject" id="resAddActorObject">resActorObject *resAddActorObject(Actor *a)</a></h3>
             <p>
                 Adds an actor to the list of drawable actors.
@@ -558,7 +558,7 @@ if (resOnMouseButtonUp(RES_MOUSE_LEFT)) // If the left mouse button was just rel
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resSearchActorObject" id="resSearchActorObject">resActorObject *resSearchActorObject(Actor *a, resActorObject **prev)</a></h3>
             <p>
                 Searches an actor object from the drawable actor list and also gives a pointer to the previous actor object in the list.
@@ -586,7 +586,7 @@ resDeleteActorObjectByPointer(del, prev);                // Delete the actor obj
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resDeleteActorObject" id="resDeleteActorObject">int resDeleteActorObject(Actor *a)</a></h3>
             <p>
                 Deletes a given actor's corresponding actor object from the list and frees the memory allocated for it.
@@ -604,7 +604,7 @@ resDeleteActorObjectByPointer(del, prev);                // Delete the actor obj
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resDeleteActorObjectByPointer" id="resDeleteActorObjectByPointer">int resDeleteActorObjectByPointer(resActorObject *del, resActorObject *prev)</a></h3>
             <p>
                 Deletes given actor object from the list and frees the memory allocated for it.
@@ -628,7 +628,7 @@ resDeleteActorObjectByPointer(del, prev);                // Delete the actor obj
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resUnlinkActorObject" id="resUnlinkActorObject">int resUnlinkActorObject(resActorObject *del, resActorObject *prev)</a></h3>
             <p>
                 Removes an actor object's linking from the list. This function is called by Resolutionary when deleting an actor object.
@@ -661,7 +661,7 @@ del = NULL;    // Clear pointer</code></pre>
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resDeleteActorObjectLists" id="resDeleteActorObjectLists">void resDeleteActorObjectLists(void)</a></h3>
             <p>
                 Deletes all actor objects in the lists and frees the memory allocated for them.
@@ -671,7 +671,7 @@ del = NULL;    // Clear pointer</code></pre>
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resDrawDynamicLayer" id="resDrawDynamicLayer">void resDrawDynamicLayer(void)</a></h3>
             <p>
                 Draws the dynamic layer.
@@ -681,7 +681,7 @@ del = NULL;    // Clear pointer</code></pre>
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resDrawStaticLayer" id="resDrawStaticLayer">void resDrawStaticLayer(void)</a></h3>
             <p>
                 Draws the static layer.
@@ -691,7 +691,7 @@ del = NULL;    // Clear pointer</code></pre>
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resSendStaticLayerActivationEvent" id="resSendStaticLayerActivationEvent">void resSendStaticLayerActivationEvent(void)</a></h3>
             <p>
                 Sends an activation event to the static layer canvas.
@@ -701,7 +701,7 @@ del = NULL;    // Clear pointer</code></pre>
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resHandleStaticLayerActivationEvent" id="resHandleStaticLayerActivationEvent">void resHandleStaticLayerActivationEvent(void)</a></h3>
             <p>
                 Handles the static layer canvas' activation events.
@@ -711,7 +711,7 @@ del = NULL;    // Clear pointer</code></pre>
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resDisplayDebugOverlay" id="resDisplayDebugOverlay">void resDisplayDebugOverlay(void)</a></h3>
             <p>
                 Draws the debug overlay that shows the following information:
@@ -733,7 +733,7 @@ del = NULL;    // Clear pointer</code></pre>
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resUpdateMouse" id="resUpdateMouse">void resUpdateMouse(void)</a></h3>
             <p>
                 Updates Resolutionary's mouse position. Also updates the variables <code>resXmouse</code> and <code>resYmouse</code> that should be used for reading mouse position instead of the usual <code>xmouse</code> and <code>ymouse</code>.
@@ -743,7 +743,7 @@ del = NULL;    // Clear pointer</code></pre>
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resUpdateMouseButtonDown" id="resUpdateMouseButtonDown">int resUpdateMouseButtonDown(enum resMouseButtonsEnum mButtonNumber)</a></h3>
             <p>
                 Updates the variable that holds the state of the given mouse button when the button is pressed down, and sends an activation event to all actors found in the current mouse actor position. The function also finds the actor with highest z depth at the mouse position, this information is used for allowing the system to simulate Game Editor's normal mouse behavior, where only the top actor can be clicked.
@@ -768,7 +768,7 @@ del = NULL;    // Clear pointer</code></pre>
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resUpdateMouseButtonUp" id="resUpdateMouseButtonUp">void resUpdateMouseButtonUp(enum resMouseButtonsEnum mButtonNumber)</a></h3>
             <p>
                 Updates the variable that holds the state of the given mouse button when the button is released, and sends an activation event to all actors that were found in the mouse actor's position when the button was pressed down.
@@ -789,7 +789,7 @@ del = NULL;    // Clear pointer</code></pre>
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resSafeStrcat" id="resSafeStrcat">int resSafeStrcat(char *destination, const char *source, int maxLen)</a></h3>
             <p>
                 This function can be used to concatenate a string to another without having to worry about overflowing the destination string. If there's not enough space in the destination string, the function concatenates as many characters from the beginning of the source string as there is space for before the string has to be null terminated. Rest of the source string is cropped out of the concatenation.
@@ -821,7 +821,7 @@ sprintf(text, "myString: %s\ncropOccured: %i", myString, cropOccured);
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resLimit" id="resLimit">double resLimit(double value, double minVal, double maxVal)</a></h3>
             <p>
                 Limits a value between given boundaries.
@@ -841,7 +841,7 @@ sprintf(text, "myString: %s\ncropOccured: %i", myString, cropOccured);
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resDisableMouseEvents" id="resDisableMouseEvents">void resDisableMouseEvents(const char *actorName)</a></h3>
             <p>
                 Disables all mouse events of a given actor.
@@ -855,7 +855,7 @@ sprintf(text, "myString: %s\ncropOccured: %i", myString, cropOccured);
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resEnableMouseEvents" id="resEnableMouseEvents">void resEnableMouseEvents(const char *actorName)</a></h3>
             <p>
                 Enables all mouse events of a given actor.
@@ -869,7 +869,7 @@ sprintf(text, "myString: %s\ncropOccured: %i", myString, cropOccured);
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resCheckActorExistence" id="resCheckActorExistence">int resCheckActorExistence(const char *actorName)</a></h3>
             <p>
                 Checks if an actor exists or not.
@@ -891,7 +891,7 @@ sprintf(text, "myString: %s\ncropOccured: %i", myString, cropOccured);
             <p class="go-to-top"><a href="#page-wrap">Back to top</a></p>
         </div>
 
-        <div class="reference-item">
+        <div class="content-box">
             <h3><a href="#resActorIsListed" id="resActorIsListed">int resActorIsListed(Actor *a)</a></h3>
             <p>
                 Checks if a given actor has already been added to either one of the drawable actor lists.
