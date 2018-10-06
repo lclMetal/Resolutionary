@@ -45,6 +45,14 @@ footer address {
     text-align: right;
 }
 
+img.qa {
+    width: 7em;
+    height: auto;
+    float: left;
+    margin-top: 0.3em;
+    margin-left: -2em;
+}
+
 .content-box.qa {
     background-image: url("icon_qa_flipped.svg");
     background-repeat: no-repeat;
@@ -353,6 +361,10 @@ pre code {
         clear: both;
     }
     
+    img.qa {
+        margin-left: -1em;
+    }
+    
     .content-box {
         padding: 0.5em 1em;
     }
@@ -414,6 +426,10 @@ pre code {
     
     .download-box h3, .download-box p {
         padding-left: 0;
+    }
+    
+    img.qa {
+        margin-left: -0.5em;
     }
     
     .content-box {
