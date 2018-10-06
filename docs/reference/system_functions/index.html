@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../../stylesheet.css" rel="StyleSheet" type="text/css" />
+    <!-- <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script> -->
+    <title>System functions - Reference - Resolutionary documentation</title>
+</head>
+<body id="page-top">
+    <nav class="flex">
+        <a href="../../">Home</a>
+        <a href="../../guide/">Usage guide</a>
+        <a href="../../support/">Support</a>
+        <span>Reference</span>
+        <a href="../../qa/">Q&amp;A</a>
+    </nav>
+    
+    <nav class="reference-nav">
+        <a href="../">API functions</a>
+        <span>System functions</span>
+        <a href="../actors/">Actors</a>
+        <a href="../variables/">Variables</a>
+    </nav>
+    
+    <div class="content-box">
+        <h1>System function reference</h1>
+
+        <div class="reference-flex">
+            <div>
+                <h3>Actor list functions</h3>
+                <ul>
+                    <li><a href="#resCreateActorObjectList">resCreateActorObjectList</a></li>
+                    <li><a href="#resAddActorObject">resAddActorObject</a></li>
+                    <li><a href="#resSearchActorObject">resSearchActorObject</a></li>
+                    <li><a href="#resDeleteActorObject">resDeleteActorObject</a></li>
+                    <li><a href="#resDeleteActorObjectByPointer">resDeleteActorObjectByPointer</a></li>
+                    <li><a href="#resUnlinkActorObject">resUnlinkActorObject</a></li>
+                    <li><a href="#resDeleteActorObjectLists">resDeleteActorObjectLists</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Drawing functions</h3>
+                <ul>
+                    <li><a href="#resDrawDynamicLayer">resDrawDynamicLayer</a></li>
+                    <li><a href="#resDrawStaticLayer">resDrawStaticLayer</a></li>
+                    <li><a href="#resSendStaticLayerActivationEvent">resSendStaticLayerActivationEvent</a></li>
+                    <li><a href="#resHandleStaticLayerActivationEvent">resHandleStaticLayerActivationEvent</a></li>
+                    <li><a href="#resDisplayDebugOverlay">resDisplayDebugOverlay</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Mouse functions</h3>
+                <ul>
+                    <li><a href="#resUpdateMouse">resUpdateMouse</a></li>
+                    <li><a href="#resUpdateMouseButtonDown">resUpdateMouseButtonDown</a></li>
+                    <li><a href="#resUpdateMouseButtonUp">resUpdateMouseButtonUp</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Miscellaneous functions</h3>
+                <ul>
+                    <li><a href="#resSafeStrcat">resSafeStrcat</a></li>
+                    <li><a href="#resLimit">resLimit</a></li>
+                    <li><a href="#resDisableMouseEvents">resDisableMouseEvents</a></li>
+                    <li><a href="#resEnableMouseEvents">resEnableMouseEvents</a></li>
+                    <li><a href="#resCheckActorExistence">resCheckActorExistence</a></li>
+                    <li><a href="#resActorIsListed">resActorIsListed</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- <ul> -->
+            <!-- <li>Actor list functions -->
+                <!-- <ul> -->
+                    <!-- <li><a href="#resCreateActorObjectList">resCreateActorObjectList</a></li> -->
+                    <!-- <li><a href="#resAddActorObject">resAddActorObject</a></li> -->
+                    <!-- <li><a href="#resSearchActorObject">resSearchActorObject</a></li> -->
+                    <!-- <li><a href="#resDeleteActorObject">resDeleteActorObject</a></li> -->
+                    <!-- <li><a href="#resDeleteActorObjectByPointer">resDeleteActorObjectByPointer</a></li> -->
+                    <!-- <li><a href="#resUnlinkActorObject">resUnlinkActorObject</a></li> -->
+                    <!-- <li><a href="#resDeleteActorObjectLists">resDeleteActorObjectLists</a></li> -->
+                <!-- </ul> -->
+            <!-- </li> -->
+            <!-- <li>Drawing functions -->
+                <!-- <ul> -->
+                    <!-- <li><a href="#resDrawDynamicLayer">resDrawDynamicLayer</a></li> -->
+                    <!-- <li><a href="#resDrawStaticLayer">resDrawStaticLayer</a></li> -->
+                    <!-- <li><a href="#resSendStaticLayerActivationEvent">resSendStaticLayerActivationEvent</a></li> -->
+                    <!-- <li><a href="#resHandleStaticLayerActivationEvent">resHandleStaticLayerActivationEvent</a></li> -->
+                    <!-- <li><a href="#resDisplayDebugOverlay">resDisplayDebugOverlay</a></li> -->
+                <!-- </ul> -->
+            <!-- </li> -->
+            <!-- <li>Mouse functions -->
+                <!-- <ul> -->
+                    <!-- <li><a href="#resUpdateMouse">resUpdateMouse</a></li> -->
+                    <!-- <li><a href="#resUpdateMouseButtonDown">resUpdateMouseButtonDown</a></li> -->
+                    <!-- <li><a href="#resUpdateMouseButtonUp">resUpdateMouseButtonUp</a></li> -->
+                <!-- </ul> -->
+            <!-- </li> -->
+            <!-- <li>Miscellaneous functions -->
+                <!-- <ul> -->
+                    <!-- <li><a href="#resSafeStrcat">resSafeStrcat</a></li> -->
+                    <!-- <li><a href="#resLimit">resLimit</a></li> -->
+                    <!-- <li><a href="#resDisableMouseEvents">resDisableMouseEvents</a></li> -->
+                    <!-- <li><a href="#resEnableMouseEvents">resEnableMouseEvents</a></li> -->
+                    <!-- <li><a href="#resCheckActorExistence">resCheckActorExistence</a></li> -->
+                    <!-- <li><a href="#resActorIsListed">resActorIsListed</a></li> -->
+                <!-- </ul> -->
+            <!-- </li> -->
+        <!-- </ul> -->
+    </div>
+    
+    <div class="content-box" id="resCreateActorObjectList">
+        <h2><a href="#resCreateActorObjectList">resActorObject *resCreateActorObjectList( Actor&nbsp;*a )</a></h2>
+        <p>
+            Creates the linked lists for the drawable dynamic and static actors. This function is automatically called by Resolutionary, if <code>resAddActorObject();</code> is trying to add an actor to an empty list.
+        </p>
+        <p class="important">
+            <strong>Important</strong>
+            <br />This function should not be called manually. Using the function incorrectly can lead to a memory leak.
+        </p>
+        <h3>Parameters</h3>
+        <ul>
+            <li><strong>a</strong> - Pointer to the actor to be added to the list</li>
+        </ul>
+        <h3>Return value</h3>
+        <p>
+            A pointer to the first actor object added to the new list, <code>NULL</code> on failure.
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint"><code>resCreateActorObjectList(&amp;collide); // Add collide actor to the list as its first object</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resAddActorObject">
+        <h2><a href="#resAddActorObject">resActorObject *resAddActorObject( Actor&nbsp;*a )</a></h2>
+        <p>
+            Adds an actor to the list of drawable actors.
+        </p>
+        <h3>Parameters</h3>
+        <ul>
+            <li><strong>a</strong> - Pointer to the actor to be added to the list</li>
+        </ul>
+        <h3>Return value</h3>
+        <p>
+            A pointer to the actor object added to the list, <code>NULL</code> on failure.
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint"><code>resAddActorObject(&amp;collide); // Add collide actor to the list</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resSearchActorObject">
+        <h2><a href="#resSearchActorObject">resActorObject *resSearchActorObject( Actor&nbsp;*a, resActorObject&nbsp;**prev )</a></h2>
+        <p>
+            Searches an actor object from the drawable actor list and also gives a pointer to the previous actor object in the list.
+        </p>
+        <p class="important">
+            <strong>Important</strong>
+            <br />This function returns two values. The second value, a pointer to the preceding object in the list, is returned via the argument <code>prev</code>.
+        </p>
+        <h3>Parameters</h3>
+        <ul>
+            <li><strong>a</strong> - Pointer to the actor to be searched from the list</li>
+            <li><strong>prev</strong> - Pointer to a pointer to an actor object for returning the address of the previous actor object in the list. If there's no need for a pointer to the previous object, just input <code>NULL</code></li>
+        </ul>
+        <h3>Return value</h3>
+        <p>
+            A pointer to the actor object that corresponds to the given actor, <code>NULL</code> if no match found. Also returns a pointer to the preceding object in the list, this pointer is returned via the argument <code>prev</code>.
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint">
+<code>resActorObject *del = NULL;  // Pointer to the actor object to delete
+resActorObject *prev = NULL; // Pointer to the previous actor object in the list
+
+del = resSearchActorObject(&amp;getclone(clonename), &amp;prev); // Find del and prev
+resDeleteActorObjectByPointer(del, prev);                // Delete the actor object that represents the current actor</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resDeleteActorObject">
+        <h2><a href="#resDeleteActorObject">int resDeleteActorObject( Actor&nbsp;*a )</a></h2>
+        <p>
+            Deletes a given actor's corresponding actor object from the list and frees the memory allocated for it.
+        </p>
+        <h3>Parameters</h3>
+        <ul>
+            <li><strong>a</strong> - Pointer to the actor to be deleted from the list</li>
+        </ul>
+        <h3>Return value</h3>
+        <p>
+            1 on success, 0 if no corresponding actor object was found for the given actor
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint"><code>resDeleteActorObject(&amp;getclone(clonename)); // Delete the actor object that represents the current actor</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resDeleteActorObjectByPointer">
+        <h2><a href="#resDeleteActorObjectByPointer">int resDeleteActorObjectByPointer( resActorObject&nbsp;*del, resActorObject&nbsp;*prev )</a></h2>
+        <p>
+            Deletes given actor object from the list and frees the memory allocated for it.
+        </p>
+        <h3>Parameters</h3>
+        <ul>
+            <li><strong>del</strong> - Pointer to the actor object to be deleted from the list</li>
+            <li><strong>prev</strong> - Pointer to the preceding actor object in the list (or <code>NULL</code> if there's none)</li>
+        </ul>
+        <h3>Return value</h3>
+        <p>
+            1 on success, 0 if <code>del</code> is <code>NULL</code>
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint">
+<code>resActorObject *del = NULL;  // Pointer to the actor object to delete
+resActorObject *prev = NULL; // Pointer to the previous actor object in the list
+
+del = resSearchActorObject(&amp;getclone(clonename), &amp;prev); // Find del and prev
+resDeleteActorObjectByPointer(del, prev);                // Delete the actor object that represents the current actor</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resUnlinkActorObject">
+        <h2><a href="#resUnlinkActorObject">int resUnlinkActorObject( resActorObject&nbsp;*del, resActorObject&nbsp;*prev )</a></h2>
+        <p>
+            Removes an actor object's linking from the list. This function is called by Resolutionary when deleting an actor object.
+        </p>
+        <p class="important">
+            <strong>Important</strong>
+            <br />This function should not be called manually. Using the function incorrectly can lead to a memory leak.
+        </p>
+        <h3>Parameters</h3>
+        <ul>
+            <li><strong>del</strong> - Pointer to the actor object to be unlinked</li>
+            <li><strong>prev</strong> - Pointer to the preceding actor object in the list (or <code>NULL</code> if there's none)</li>
+        </ul>
+        <h3>Return value</h3>
+        <p>
+            1 on success, 0 if <code>del</code> is <code>NULL</code>
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint">
+<code>resActorObject *del = NULL;  // Pointer to the actor object to delete
+resActorObject *prev = NULL; // Pointer to the previous actor object in the list
+
+del = resSearchActorObject(&amp;getclone(clonename), &amp;prev); // Find del and prev
+resUnlinkActorObject(del, prev); // Unlink the actor object that represents the current actor
+
+if (del)       // If a corresponding actor object was actually found
+free(del); // Free the memory allocated for the actor object that represents the current actor
+
+del = NULL;    // Clear pointer</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resDeleteActorObjectLists">
+        <h2><a href="#resDeleteActorObjectLists">void resDeleteActorObjectLists( void )</a></h2>
+        <p>
+            Deletes all actor objects in the lists and frees the memory allocated for them.
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint"><code>resDeleteActorObjectLists(); // Delete all actor objects and free all memory allocated for them</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resDrawDynamicLayer">
+        <h2><a href="#resDrawDynamicLayer">void resDrawDynamicLayer( void )</a></h2>
+        <p>
+            Draws the dynamic layer.
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint"><code>resDrawDynamicLayer(); // Draw the dynamic layer</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resDrawStaticLayer">
+        <h2><a href="#resDrawStaticLayer">void resDrawStaticLayer( void )</a></h2>
+        <p>
+            Draws the static layer.
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint"><code>resDrawStaticLayer(); // Draw the static layer</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resSendStaticLayerActivationEvent">
+        <h2><a href="#resSendStaticLayerActivationEvent">void resSendStaticLayerActivationEvent( void )</a></h2>
+        <p>
+            Sends an activation event to the static layer canvas.
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint"><code>resSendStaticLayerActivationEvent(); // Send activation event to the static layer canvas</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resHandleStaticLayerActivationEvent">
+        <h2><a href="#resHandleStaticLayerActivationEvent">void resHandleStaticLayerActivationEvent( void )</a></h2>
+        <p>
+            Handles the static layer canvas' activation events.
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint"><code>resSendStaticLayerActivationEvent(); // Handle the activation event</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resDisplayDebugOverlay">
+        <h2><a href="#resDisplayDebugOverlay">void resDisplayDebugOverlay( void )</a></h2>
+        <p>
+            Draws the debug overlay that shows the following information:
+        </p>
+        <ul>
+            <li>Resolution information (original &amp; scaled resolution)</li>
+            <li>Memory currently allocated for the system (in kibibytes (KiB), 1 kibibyte = 1024 bytes)</li>
+            <li>Amount of actors currently on the dynamic actor list</li>
+            <li>Amount of actors currently on the static actor list</li>
+            <li>Top actor for every mouse button held down. In practice this means only right, left and middle mouse buttons, as mouse wheel up and down can't be held down</li>
+            <li>All clicked actors for every mouse button held down. Again, only right, left and middle buttons actually show any values, as mouse wheel up and down can't be held down</li>
+        </ul>
+        <p class="important">
+            <strong>Important</strong>
+            <br />The debug overlay can only be drawn if the constant <code>RES_DEBUG</code> is 1.
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint"><code>resDisplayDebugOverlay(); // Display the debug overlay</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resUpdateMouse">
+        <h2><a href="#resUpdateMouse">void resUpdateMouse( void )</a></h2>
+        <p>
+            Updates Resolutionary's mouse position. Also updates the variables <code>resXmouse</code> and <code>resYmouse</code> that should be used for reading mouse position instead of the usual <code>xmouse</code> and <code>ymouse</code>.
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint"><code>resUpdateMouse(); // Update Resolutionary's mouse</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resUpdateMouseButtonDown">
+        <h2><a href="#resUpdateMouseButtonDown">int resUpdateMouseButtonDown( enum&nbsp;resMouseButtonsEnum&nbsp;mButtonNumber )</a></h2>
+        <p>
+            Updates the variable that holds the state of the given mouse button when the button is pressed down, and sends an activation event to all actors found in the current mouse actor position. The function also finds the actor with highest z depth at the mouse position, this information is used for allowing the system to simulate Game Editor's normal mouse behavior, where only the top actor can be clicked.
+        </p>
+        <h3>Parameters</h3>
+        <ul>
+            <li><strong>mButtonNumber</strong> - The mouse button to update, must be one of the following:
+                <ul>
+                    <li>RES_MOUSE_LEFT</li>
+                    <li>RES_MOUSE_RIGHT</li>
+                    <li>RES_MOUSE_MIDDLE</li>
+                    <li>RES_MOUSE_WHEEL_UP</li>
+                    <li>RES_MOUSE_WHEEL_DOWN</li>
+                </ul></li>
+        </ul>
+        <h3>Return value</h3>
+        <p>
+            0 on success, 1 if no actors in collision (i.e. nothing to click), 2 if memory allocation failed
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint"><code>resUpdateMouseButtonDown(RES_MOUSE_LEFT); // Update the status of left mouse button to pressed down</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resUpdateMouseButtonUp">
+        <h2><a href="#resUpdateMouseButtonUp">void resUpdateMouseButtonUp( enum&nbsp;resMouseButtonsEnum&nbsp;mButtonNumber )</a></h2>
+        <p>
+            Updates the variable that holds the state of the given mouse button when the button is released, and sends an activation event to all actors that were found in the mouse actor's position when the button was pressed down.
+        </p>
+        <h3>Parameters</h3>
+        <ul>
+            <li><strong>mButtonNumber</strong> - The mouse button to update, must be one of the following:
+                <ul>
+                    <li>RES_MOUSE_LEFT</li>
+                    <li>RES_MOUSE_RIGHT</li>
+                    <li>RES_MOUSE_MIDDLE</li>
+                    <li>RES_MOUSE_WHEEL_UP</li>
+                    <li>RES_MOUSE_WHEEL_DOWN</li>
+                </ul></li>
+        </ul>
+        <h3>Example call</h3>
+        <pre class="prettyprint"><code>resUpdateMouseButtonUp(RES_MOUSE_LEFT); // Update the status of left mouse button to released</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resSafeStrcat">
+        <h2><a href="#resSafeStrcat">int resSafeStrcat( char&nbsp;*destination, const&nbsp;char&nbsp;*source, int&nbsp;maxLen )</a></h2>
+        <p>
+            This function can be used to concatenate a string to another without having to worry about overflowing the destination string. If there's not enough space in the destination string, the function concatenates as many characters from the beginning of the source string as there is space for before the string has to be null terminated. Rest of the source string is cropped out of the concatenation.
+        </p>
+        <h3>Parameters</h3>
+        <ul>
+            <li><strong>destination</strong> - Pointer to the string to concatenate to</li>
+            <li><strong>source</strong> - Pointer to the string to concatenate</li>
+            <li><strong>maxLen</strong> - The length of the longest string the array can contain</li>
+        </ul>
+        <h3>Return value</h3>
+        <p>
+            0 on success, 1 if some of the source string had to be cropped from concatenation
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint">
+<code>char myString[30] = "This is a string.";
+char *addThis = " This is another string, a longer one.";
+
+int cropOccured = 0;
+
+cropOccured = resSafeStrcat(myString, addThis, sizeof myString); // Concatenate as much of addThis to myString as possible
+
+sprintf(text, "myString: %s\ncropOccured: %i", myString, cropOccured);
+
+// Will print:
+//   myString: This is a string. This is ano
+//   cropOccured: 1</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resLimit">
+        <h2><a href="#resLimit">double resLimit( double&nbsp;value, double&nbsp;minVal, double&nbsp;maxVal )</a></h2>
+        <p>
+            Limits a value between given boundaries.
+        </p>
+        <h3>Parameters</h3>
+        <ul>
+            <li><strong>value</strong> - The value that is to be limited</li>
+            <li><strong>minVal</strong> - The minimum value the variable can have</li>
+            <li><strong>maxVal</strong> - The maximum value the variable can have</li>
+        </ul>
+        <h3>Return value</h3>
+        <p>
+            If the given value is between the limit values, it is returned as it is, otherwise returns the exceeded limit value
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint"><code>x = resLimit(x, -100, 100); // Limit current actor's x between -100 and 100</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resDisableMouseEvents">
+        <h2><a href="#resDisableMouseEvents">void resDisableMouseEvents( const&nbsp;char&nbsp;*actorName )</a></h2>
+        <p>
+            Disables all mouse events of a given actor.
+        </p>
+        <h3>Parameters</h3>
+        <ul>
+            <li><strong>actorName</strong> - Name or clonename of any actor in the game. Also supports "Event Actor", "Parent Actor", "Creator Actor" and "Collide Actor".</li>
+        </ul>
+        <h3>Example call</h3>
+        <pre class="prettyprint"><code>resDisableMouseEvents("Event Actor"); // Disable current actor's mouse events</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resEnableMouseEvents">
+        <h2><a href="#resEnableMouseEvents">void resEnableMouseEvents( const&nbsp;char&nbsp;*actorName )</a></h2>
+        <p>
+            Enables all mouse events of a given actor.
+        </p>
+        <h3>Parameters</h3>
+        <ul>
+            <li><strong>actorName</strong> - Name or clonename of any actor in the game. Also supports "Event Actor", "Parent Actor", "Creator Actor" and "Collide Actor".</li>
+        </ul>
+        <h3>Example call</h3>
+        <pre class="prettyprint"><code>resEnableMouseEvents("Event Actor"); // Enable current actor's mouse events</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resCheckActorExistence">
+        <h2><a href="#resCheckActorExistence">int resCheckActorExistence( const&nbsp;char&nbsp;*actorName )</a></h2>
+        <p>
+            Checks if an actor exists or not.
+        </p>
+        <h3>Parameters</h3>
+        <ul>
+            <li><strong>actorName</strong> - Name or clonename of any actor in the game.</li>
+        </ul>
+        <h3>Return value</h3>
+        <p>
+            1 if actor exists, 0 if not
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint">
+<code>if (!resCheckActorExistence("myActor")) // If myActor doesn't exist
+{
+DestroyActor("Event Actor"); // Destroy current actor
+}</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resActorIsListed">
+        <h2><a href="#resActorIsListed">int resActorIsListed( Actor&nbsp;*a )</a></h2>
+        <p>
+            Checks if a given actor has already been added to either one of the drawable actor lists.
+        </p>
+        <h3>Parameters</h3>
+        <ul>
+            <li><strong>a</strong> - Pointer to the actor that is to be checked</li>
+        </ul>
+        <h3>Return value</h3>
+        <p>
+            1 if actor is on a list, 0 if not
+        </p>
+        <h3>Example call</h3>
+        <pre class="prettyprint">
+<code>if (!resActorIsListed(&amp;collide)) // If collide actor is not listed yet
+resAddActorObject(&amp;collide); // Add it</code></pre>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+    
+    <footer class="content-box">
+        <p>2018 Lassi Lehtinen (aka lcl / lclMetal)</p>
+        <address>
+            lehtinen.lassi.c(at)gmail.com
+        </address>
+    </footer>
+</body>
+</html>

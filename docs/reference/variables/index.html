@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../../stylesheet.css" rel="StyleSheet" type="text/css" />
+    <!-- <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script> -->
+    <title>Variables - Reference - Resolutionary documentation</title>
+</head>
+<body id="page-top">
+    <nav class="flex">
+        <a href="../../">Home</a>
+        <a href="../../guide/">Usage guide</a>
+        <a href="../../support/">Support</a>
+        <span>Reference</span>
+        <a href="../../qa/">Q&amp;A</a>
+    </nav>
+    
+    <nav class="reference-nav">
+        <a href="../">API functions</a>
+        <a href="../system_functions/">System functions</a>
+        <a href="../actors/">Actors</a>
+        <span>Variables</span>
+    </nav>
+    
+    <div class="content-box">
+        <h1>Variable reference</h1>
+
+        <ul>
+            <li>Global variables
+                <ul>
+                    <li><a href="#resmouseVars">resXmouse</a></li>
+                    <li><a href="#resmouseVars">resYmouse</a></li>
+                </ul>
+            </li>
+            <li>Predefined actor variables
+                <ul>
+                    <li><a href="#resActorType">resActorType</a></li>
+                    <li><a href="#resActorZLayer">resActorZLayer</a></li>
+                    <li><a href="#resHasParent">resHasParent</a></li>
+                    <li><a href="#resParentName">resParentName</a></li>
+                    <li><a href="#resIsOnActorObjectList">resIsOnActorObjectList</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content-box" id="resmouseVars">
+        <h2><a href="#resmouseVars">int&nbsp;resXmouse, int&nbsp;resYmouse</a></h2>
+        <p>
+            Global variables used for providing the relative mouse coordinates according to the scale. Use these variables in place of xmouse and ymouse.
+        </p>
+        <p class="important">
+            <strong>Important</strong>
+            <br />Only use these variables to read mouse position. Don't change these variables' values, Resolutionary updates them for you every frame.
+        </p>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resActorType">
+        <h2><a href="#resActorType">int&nbsp;resActorType</a></h2>
+        <p>
+            An <em>actor variable</em> used for storing an actor's type.
+        </p>
+        <p class="important">
+            <strong>Important</strong>
+            <br />Don't change this actor variable directly. Instead, use the function <a href="#resChangeActorType"><code>resChangeActorType();</code></a> to set or change an actor's type.
+        </p>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resActorZLayer">
+        <h2><a href="#resActorZLayer">int&nbsp;resActorZLayer</a></h2>
+        <p>
+            An <em>actor variable</em> used for managing an actor's depth in the drawing order.
+        </p>
+        <p class="important">
+            <strong>Important</strong>
+            <br />Don't change this actor variable directly. Instead, use the function <a href="#resChangeActorZLayer"><code>resChangeActorZLayer();</code></a> to set or change an actor's zLayer.
+        </p>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resHasParent">
+        <h2><a href="#resHasParent">int&nbsp;resHasParent</a></h2>
+        <p>
+            An <em>actor variable</em> used for telling Resolutionary whether an actor has a parent or not. This information is crucial for knowing whether the actor's coordinates should be interpreted as absolute or as relative to another actor.
+        </p>
+        <p class="important">
+            <strong>Important</strong>
+            <br />Don't change this actor variable directly. Instead, use the function <a href="#resChangeActorParent"><code>resChangeActorParent();</code></a> to set or change an actor's parent.
+        </p>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resParentName">
+        <h2><a href="#resParentName">char&nbsp;resParentName[256]</a></h2>
+        <p>
+            An <em>actor variable</em> used for fetching a pointer to an actor's parent when needed.
+        </p>
+        <p class="important">
+            <strong>Important</strong>
+            <br />Don't change this actor variable directly.
+        </p>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+
+    <div class="content-box" id="resIsOnActorObjectList">
+        <h2><a href="#resIsOnActorObjectList">int&nbsp;resIsOnActorObjectList</a></h2>
+        <p>
+            An <em>actor variable</em> used for telling Resolutionary whether an actor is already listed or not.
+        </p>
+        <p class="important">
+            <strong>Important</strong>
+            <br />Don't change this actor variable directly.
+        </p>
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+    
+    <footer class="content-box">
+        <p>2018 Lassi Lehtinen (aka lcl / lclMetal)</p>
+        <address>
+            lehtinen.lassi.c(at)gmail.com
+        </address>
+    </footer>
+</body>
+</html>

@@ -2,34 +2,85 @@ body {
     background-color: lightgray;
     color: black;
     font-family: "Segoe UI", Calibri, Futura, Geneva, Verdana, Arial, sans-serif;
+    max-width: 1200px;
+    min-height: 100%;
+    margin: 0.5em auto;
 }
 
 h1, h2, h3 {
     font-weight: normal;
 }
 
-#page-wrap {
-    max-width: 1200px;
-    margin: 0 auto;
+h2 a {
+    font-size: 90%;
 }
 
-.download-button {
-    display: block;
-    text-align: center;
-    padding: 1em;
+p, li {
+    line-height: 1.5;
+}
+
+th[scope="row"] {
+    text-align: left;
+    padding: 0.5em;
+    vertical-align: baseline;
+}
+
+td {
+    padding: 0.5em;
+    vertical-align: baseline;
+}
+
+footer {
+    display: flex;
+}
+
+footer p {
+    flex: 1;
     margin: 0;
+}
+
+footer address {
+    flex: 1;
+    margin: 0;
+    text-align: right;
+}
+
+.content-box.qa {
+    background-image: url("icon_qa_flipped.svg");
+    background-repeat: no-repeat;
+    background-size: 7em;
+    background-position: top 0.8em left;
+    padding-left: 7em;
+}
+
+.answer-a {
+    font-size: 1.4em;
+    /* font-weight: bold; */
+}
+
+.p-subheader {
+    margin-top: 2em;
+}
+
+.download-box {
+    float: right;
     border-radius: 10px;
-    text-shadow: 1px 1px black;
-    font-size: 1.2em;
+    padding: 0.5em 1.5em;
+    margin-bottom: 1.5em;
+    margin-right: 1.5em;
+    background-color: lightgray;
+    background-size: auto 3.5rem;
+    background-repeat: no-repeat;
+    background-position: 1.5em center;
+    background-image: url("icon_download.svg");
 }
 
-.download-button:link, .download-button:visited {
-    background-color: limegreen;
-    color: white;
+.download-box h3, .download-box p {
+    padding-left: 4rem;
 }
 
-.download-button:hover {
-    background-color: lime;
+.small-note {
+    font-size: 0.7em;
 }
 
 .flex {
@@ -38,13 +89,93 @@ h1, h2, h3 {
     justify-content: center;
 }
 
+.reference-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.reference-flex > div {
+    flex-basis: 33%;
+    flex-grow: 1;
+    margin: 0;
+}
+
+.reference-flex div ul {
+    padding: 0 1em;
+}
+
 .flex > div {
     text-align: center;
     background-color: white;
     flex-basis: 25%;
     flex-grow: 1;
     flex-shrink: 1;
+    width: 100%;
     box-sizing: border-box;
+}
+
+.flex > a, .flex > a:visited, .flex > a:link, .flex > span {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 20%;
+    box-sizing: border-box;
+    background-color: white;
+    text-align: center;
+    border: solid lightgray 4px;
+    border-bottom: none;
+    border-bottom: solid lightgray 4px;
+    padding: 0.5em;
+    /* color: #666666; */
+}
+
+.flex > span {
+    /* border: solid gray 4px; */
+    border: solid white 4px;
+    color: black;
+    /* background: linear-gradient(lightgray, white); */
+    /* box-shadow: 0 3px 4px lightgray; */
+    /* border-bottom: solid white 4px; */
+    border-bottom: none;
+}
+
+.flex > a:hover {
+    border: solid white 4px;
+    /* border-top: solid white 4px; */
+    /* border-bottom: solid white 4px; */
+    /* border-bottom: none; */
+    color: #666666;
+    text-decoration: underline;
+}
+
+.reference-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 0;
+    background-color: white;
+    padding: 0.2em 0;
+    /* border-bottom: dashed lightgray; */
+}
+
+.reference-nav a, .reference-nav span {
+    flex: 1;
+    flex-basis: 20%;
+    text-align: center;
+    /* font-size: 1.2em; */
+    margin: auto 1em;
+    height: 2em;
+    line-height: 2;
+    border-bottom: dashed lightgray;
+}
+
+.reference-nav span {
+    border-bottom: solid lightgray;
+    /* text-decoration: underline; */
+}
+
+.reference-nav + .content-box, body .flex:first-child + .content-box {
+    margin-top: 0;
 }
 
 .box-link img {
@@ -85,6 +216,7 @@ h1, h2, h3 {
     background-color: white;
     padding: 0.5em 2em;
     margin: 1em 0;
+    /* margin-top: 0; */
     overflow: auto;
 }
 
@@ -96,10 +228,15 @@ h1, h2, h3 {
     padding: 0.5em 0;
 }
 
+ol.index-list li {
+    padding: 0;
+}
+
 .screenshot-box {
     text-align: center;
     padding: 1em;
     max-width: 50%;
+    background-color: white;
 }
 
 .screenshot-box img {
@@ -117,6 +254,10 @@ h1, h2, h3 {
     padding: 1em;
 }
 
+.important a {
+    color: blue;
+}
+
 div.important {
     background-color: lightblue;
     padding: 0.1em 1em;
@@ -130,13 +271,14 @@ ul li {
     list-style-type: circle;
 }
 
-h3 a, h3 a:link, h3 a:visited {
-    color: black;
+h2 a, h3 a, h2 a:link, h3 a:link, h2 a:visited, h3 a:visited {
+    /* color: black; */
     text-decoration: none;
 }
 
-h3 a:hover {
+h2 a:hover, h3 a:hover {
     color: lightblue;
+    text-decoration: underline;
 }
 
 a:link, p.go-to-top a:visited {
@@ -161,6 +303,14 @@ pre {
     overflow: auto;
 }
 
+p code, li code, h2 code, h3 code {
+    font-size: 1.2em;
+}
+
+pre code {
+    font-size: 1em;
+}
+
 .left {
     float: left;
     margin-right: 2em;
@@ -171,17 +321,40 @@ pre {
     margin: 0;
 }
 
+.clear {
+    clear: both;
+}
+
 
 
 @media all and (max-width: 850px) {
+    h2 a {
+        font-size: 85%;
+    }
+    
     .flex > div {
         flex-basis: 50%;
     }
     
+    .reference-flex > div {
+        flex-basis: 50%;
+    }
+    
+    .reference-nav a, .reference-nav span {
+        flex-basis: 30%;
+    }
+    
+    .download-box {
+        float: left;
+        margin-right: 0;
+    }
+    
+    .download-box + * {
+        clear: both;
+    }
+    
     .content-box {
-        background-color: white;
         padding: 0.5em 1em;
-        margin: 1em 0;
     }
     
     .content-box ol, .content-box ul {
@@ -195,19 +368,65 @@ pre {
     }
 }
 
+@media all and (max-width: 620px) {
+    .reference-flex > div {
+        flex-basis: 100%;
+    }
+
+    footer {
+        display: block;
+    }
+
+    footer address {
+        text-align: left;
+    }
+}
+
 @media all and (max-width: 500px) {
+    h2 a {
+        font-size: 80%;
+    }
+    
     .flex > div {
         flex-basis: 100%;
     }
     
+    .flex > a, .flex > a:visited, .flex > a:link, .flex > span {
+        flex-basis: 100%;
+    }
+    
+    .flex > span {
+        border: solid lightgray 4px;
+        /* border: solid white 4px; */
+    }
+    
+    .reference-nav a, .reference-nav span {
+        flex-basis: 100%;
+    }
+    
+    .download-box {
+        padding: 0.5em 1em;
+        background-size: auto 3.5rem;
+        background-repeat: no-repeat;
+        background-position: 1.5em center;
+        background-image: none;
+    }
+    
+    .download-box h3, .download-box p {
+        padding-left: 0;
+    }
+    
     .content-box {
-        background-color: white;
         padding: 0.5em 0.5em;
-        margin: 1em 0;
     }
     
     .content-box ol, .content-box ul {
         padding-left: 1em;
+    }
+    
+    .go-to-top {
+        text-align: center;
+        margin-bottom: 0.5em;
     }
     
     .screenshot-box {

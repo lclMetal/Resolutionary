@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../../stylesheet.css" rel="StyleSheet" type="text/css" />
+    <!-- <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script> -->
+    <title>Actors - Reference - Resolutionary documentation</title>
+</head>
+<body id="page-top">
+    <nav class="flex">
+        <a href="../../">Home</a>
+        <a href="../../guide/">Usage guide</a>
+        <a href="../../support/">Support</a>
+        <span>Reference</span>
+        <a href="../../qa/">Q&amp;A</a>
+    </nav>
+    
+    <nav class="reference-nav">
+        <a href="../">API functions</a>
+        <a href="../system_functions/">System functions</a>
+        <span>Actors</span>
+        <a href="../variables/">Variables</a>
+    </nav>
+    
+    <div class="content-box">
+        <h1>Actor reference</h1>
+
+        <ul>
+            <li><a href="#resActorDetector">resActorDetector</a></li>
+            <li><a href="#resBackground">resBackground</a></li>
+            <li><a href="#resBorders">resBorders</a></li>
+            <li><a href="#resDynamicLayerCanvas">resDynamicLayerCanvas</a></li>
+            <li><a href="#resMouse">resMouse</a></li>
+            <li><a href="#resMouseClickDetector">resMouseClickDetector</a></li>
+            <li><a href="#resStaticLayerCanvas">resStaticLayerCanvas</a></li>
+        </ul>
+    </div>
+
+    <div class="content-box" id="resActorDetector">
+        <h2><a href="#resActorDetector">resActorDetector</a></h2>
+        <p>
+            <code>resActorDetector</code> is used for detecting actors that are currently on screen. This actor should be exactly the same size as the <code>view</code> actor is in the original resolution of the game, so that the area that is monitored is the same as the original view size.
+        </p>
+        <h3>Type</h3>
+        <ul>
+            <li><strong>Filled Region actor</strong></li>
+        </ul>
+
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+    
+    <div class="content-box" id="resBackground">
+        <h2><a href="#resBackground">resBackground</a></h2>
+        <p>
+            <code>resBackground</code> is used as a background that hides the actual game under the Resolutionary screen.
+        </p>
+        <h3>Type</h3>
+        <ul>
+            <li><strong>Normal actor</strong></li>
+        </ul>
+
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+    
+    <div class="content-box" id="resBorders">
+        <h2><a href="#resBorders">resBorders</a></h2>
+        <p>
+            Two clones of this actor are used as the "black bars" for filling the leftover space on the screen if the aspect ratios of the original resolution and the new resolution don't match.
+        </p>
+        <h3>Type</h3>
+        <ul>
+            <li><strong>Normal actor</strong></li>
+        </ul>
+
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+    
+    <div class="content-box" id="resDynamicLayerCanvas">
+        <h2><a href="#resDynamicLayerCanvas">resDynamicLayerCanvas</a></h2>
+        <p>
+            <code>resDynamicLayerCanvas</code> is used for drawing the dynamic actors and is updated every frame.
+        </p>
+        <h3>Type</h3>
+        <ul>
+            <li><strong>Canvas actor</strong></li>
+        </ul>
+
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+    
+    <div class="content-box" id="resMouse">
+        <h2><a href="#resMouse">resMouse</a></h2>
+        <p>
+            <code>resMouse</code> is an actor the size of one pixel and is used for detecting which actors are found at the position where the mouse should be in relation to the original resolution.
+        </p>
+        <h3>Type</h3>
+        <ul>
+            <li><strong>Normal actor</strong></li>
+        </ul>
+
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+    
+    <div class="content-box" id="resMouseClickDetector">
+        <h2><a href="#resMouseClickDetector">resMouseClickDetector</a></h2>
+        <p>
+            <code>resMouseClickDetector</code> is used for capturing mouse clicks. When clicked, the actor sends an Activation Event to every actor currently colliding with <code>resMouse</code>.
+        </p>
+        <h3>Type</h3>
+        <ul>
+            <li><strong>Filled Region actor</strong></li>
+        </ul>
+
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+    
+    <div class="content-box" id="resStaticLayerCanvas">
+        <h2><a href="#resStaticLayerCanvas">resStaticLayerCanvas</a></h2>
+        <p>
+            <code>resStaticLayerCanvas</code> is used for drawing the static actors and is updated only when requested or when a change occurs in the list of static actors, i.e. an actor is either added to the list or removed from it.
+        </p>
+        <h3>Type</h3>
+        <ul>
+            <li><strong>Canvas actor</strong></li>
+        </ul>
+
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
+    </div>
+    
+    <footer class="content-box">
+        <p>2018 Lassi Lehtinen (aka lcl / lclMetal)</p>
+        <address>
+            lehtinen.lassi.c(at)gmail.com
+        </address>
+    </footer>
+</body>
+</html>

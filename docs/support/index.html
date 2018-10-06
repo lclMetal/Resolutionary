@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../stylesheet.css" rel="StyleSheet" type="text/css" />
+    <!-- <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script> -->
+    <title>Support - Resolutionary documentation</title>
+</head>
+<body>
+    <nav class="flex">
+        <a href="../">Home</a>
+        <a href="../guide/">Usage guide</a>
+        <span>Support</span>
+        <a href="../reference/">Reference</a>
+        <a href="../qa/">Q&amp;A</a>
+    </nav>
+    
+    <div class="content-box">
+        <h1>Support</h1>
+        
+        <p>
+            Help for solving some of the problems you might encounter with Resolutionary.
+        </p>
+        
+        <h3>What to do if...</h3>
+        
+        <ul>
+            <li><a href="#actor-disappears">Your actor disappears from the screen before it should</a></li>
+            <li><a href="#out-of-vision-triggered">Your actor's Out of Vision event is triggered when the actor is still visible</a></li>
+            <li><a href="#out-of-vision-not-triggered">Your actor's Out of Vision event is not triggered when the actor leaves the screen</a></li>
+            <li><a href="#mouse-events-not-working">Your actor's mouse events don't work</a></li>
+            
+            <li><a href="#game-runs-slow">Your game runs slow with Resolutionary</a></li>
+            <li><a href="#actor-not-visible">Your actor doesn't appear on the screen</a></li>
+            <li><a href="#actor-in-wrong-position">Your actor appears in the wrong position on the screen</a></li>
+        </ul>
+    </div>
+    
+    <div class="content-box" id="actor-disappears">
+        <h2><a href="#actor-disappears">Actor disappears from the screen before it should</a></h2>
+        
+        <p>
+            This problem is most likely caused by the <code>resActorDetector</code> being the wrong size, that is, not matching the size of the original resolution of the game. For fixing the problem, see <a href="../guide/index.html#resize-resActorDetector">Initial configuration - step 5</a> on the <em>Usage guide</em> page.
+        </p>
+    </div>
+    
+    <div class="content-box" id="out-of-vision-triggered">
+        <h2><a href="#out-of-vision-triggered">An actor's Out of Vision event is triggered when the actor is still visible</a></h2>
+        
+        <p>
+            This problem has the same cause as the previous one, so see its solution <a href="#actor-disappears">above</a>.
+        </p>
+    </div>
+    
+    <div class="content-box" id="out-of-vision-not-triggered">
+        <h2><a href="#out-of-vision-not-triggered">An actor's Out of Vision event is not triggered when the actor leaves the screen</a></h2>
+        
+        <p>This problem has two possible causes.</p>
+        
+        <p>
+            The first one is that you may have not modified your game to work right with Resolutionary by converting all <em>Out of Vision</em> events into <em>Collision Finish</em> events from <code>resActorDetector</code>. There's an explanation on why you need to do that on the <em>Usage guide</em> page under <a href="../guide/index.html#convert-out-of-vision">Making your project Resolutionary compatible</a>.
+        </p>
+        
+        <p>
+            The other possibility is that the <code>resActorDetector</code> is not correctly set up for your game. In that case, the solution is the same as for the two problems <a href="#actor-disappears">above</a>.
+        </p>
+    </div>
+
+    <div class="content-box" id="mouse-events-not-working">
+        <h2><a href="#mouse-events-not-working">An actor's mouse events don't work</a></h2>
+        
+        <p>
+            This problem and its solution are explained on the <em>Usage guide</em> page under <a href="../guide/index.html#make-compatible">Making your project Resolutionary compatible</a>.
+        </p>
+    </div>
+
+    <div class="content-box" id="game-runs-slow">
+        <h2><a href="#game-runs-slow">Game runs slow with Resolutionary</a></h2>
+        
+        <p>
+            Resolutionary has two settings for how to draw the actors that appear on screen. These settings are <em>dynamic</em> and <em>static</em>.
+        </p>
+        <p>
+            Actors that are set to dynamic mode, are redrawn every frame, and actors that are set to static mode, are by default drawn only when they first appear. Static actors can also be redrawn at any time by command.
+        </p>
+        <p>
+            Now, Resolutionary doesn't know which actors should be dynamic and which should be static, so the default setting for all actors is dynamic, as most actors have to be redrawn every frame because of movement or animation. If your game has a lot of actors on screen at a time, updating them all constantly can be quite heavy and cause preformance slowdown.
+        </p>
+        <p>
+            If your game has actors that don't need constant updating (static backgrounds, for example), you can set them to be static. This can be done with the function <a href="../reference/index.html#resChangeActorType" title="resChangeActorType(); on Resolutionary reference page"><code>resChangeActorType();</code></a>:
+        </p>
+        <pre class="prettyprint"><code>resChangeActorType("Event Actor", RES_ACTOR_STATIC); // Set current actor's type to static</code></pre>
+        <p>
+            For example, in the example game provided with Resolutionary the jewels are made static when they stop moving, and only made dynamic again when they have to move again.
+        </p>
+        <p>
+            Also, your game may include actors that don't need to be drawn (hitboxes, Filled Region actors, Wire Frame Region actors, ...). But if those actors can have collision events, they get added to the list of actors to draw, and thus make the list longer and more inefficient to process. You can prevent this by setting all these actors' type to <em>not drawable</em>:
+        </p>
+        <pre class="prettyprint"><code>resChangeActorType("Event Actor", RES_ACTOR_NOT_DRAWABLE); // Set current actor's type to not drawable</code></pre>
+        <p>
+            Another possible cause for low performance is if your z layer ordering is inefficient. The actors are added to the lists in order by their <em>z layer</em>, the higher the number, the closer to the end of the list the actor will be placed, so that it will be drawn last. If you, for example, have a lot of clones being created and destroyed all the time and their z layer is high, this means that whenever a new clone spawns, Resolutionary has to travel all the way through the list to find the correct place for the actor. If this is that case, there unfortunately is not much you can do to fix it. There are plans for making Resolutionary more efficient with creating great amounts of clones.
+        </p>
+    </div>
+    
+    <div class="content-box" id="actor-not-visible">
+        <h2><a href="#actor-not-visible">Actor doesn't appear on the screen</a></h2>
+        <p>
+            If you can't see your actor drawn on the screen, there's usually two possible reasons why:
+        </p>
+        <ul>
+            <li>Your actor gets drawn over by another actor</li>
+            <li>Your actor is parented to another actor, but Resolutionary doesn't have information about it, and thus draws the actor in a wrong position, possibly outside of the view</li>
+        </ul>
+        <p>
+            If you know for sure that your actor doesn't have a parent, then the issue is that the actor is getting drawn over by another actor. For solving this issue, you have to use the function <a href="../reference/index.html#resChangeActorZLayer" title="resChangeActorZLayer(); on Resolutionary reference page"><code>resChangeActorZLayer();</code></a>:
+        </p>
+        <pre class="prettyprint"><code>resChangeActorZLayer("Event Actor", 1); // Set current actor's z layer to 1</code></pre>
+        <p>
+            For example, you can set the z layer in an actor's Create Actor event. The actors are drawn in order by their z layer, from lowest to highest. So, an actor with a z layer 1 will be drawn over an actor with z layer 0. All actors have their z layer set to 0 by default, and you need to adjust the layers so that they get drawn in the correct order.
+        </p>
+        <p>
+            If you can't see your actor because it is parented, all you have to do is to let Resolutionary know about that. For this, use the function <a href="../reference/index.html#resChangeActorParent" title="resChangeActorParent(); on Resolutionary reference page"><code>resChangeActorParent();</code></a>:
+        </p>
+        <pre class="prettyprint"><code>resChangeActorParent("Event Actor", "parentActor"); // Set the actor 'parentActor' as the current actor's parent</code></pre>
+    </div>
+    
+    <div class="content-box" id="actor-in-wrong-position">
+        <h2><a href="#actor-in-wrong-position">Actor appears in the wrong position on the screen</a></h2>
+        
+        <p>
+            If your actor is parented to another actor but Resolutionary doesn't know about that, it will assume the actor's coordinates are absolute coordinates and not relative to the parent actor, and thus draw the actor in a wrong position.
+        </p>
+        <p>
+            This can be solved by simply letting Resolutionary know about the parenting. For this, use the function <a href="../reference/index.html#resChangeActorParent" title="resChangeActorParent(); on Resolutionary reference page"><code>resChangeActorParent();</code></a>:
+        </p>
+        <pre class="prettyprint"><code>resChangeActorParent("Event Actor", "parentActor"); // Set the actor 'parentActor' as the current actor's parent</code></pre>
+    </div>
+    
+    <footer class="content-box">
+        <p>2018 Lassi Lehtinen (aka lcl / lclMetal)</p>
+        <address>
+            lehtinen.lassi.c(at)gmail.com
+        </address>
+    </footer>
+</body>
+</html>

@@ -1,5 +1,5 @@
-# Ignore Game Editor undo files
+# Game Editor undo files
 *.ged.undo
-icons.svg
-*.xcf
 
+# Gimp project files
+*.xcf
