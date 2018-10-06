@@ -7,7 +7,7 @@
     <!-- <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script> -->
     <title>Support - Resolutionary documentation</title>
 </head>
-<body>
+<body id="page-top">
     <nav class="flex">
         <a href="../">Home</a>
         <a href="../guide/">Usage guide</a>
@@ -43,6 +43,8 @@
         <p>
             This problem is most likely caused by the <code>resActorDetector</code> being the wrong size, that is, not matching the size of the original resolution of the game. For fixing the problem, see <a href="../guide/index.html#resize-resActorDetector">Initial configuration - step 5</a> on the <em>Usage guide</em> page.
         </p>
+        
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
     </div>
     
     <div class="content-box" id="out-of-vision-triggered">
@@ -51,6 +53,8 @@
         <p>
             This problem has the same cause as the previous one, so see its solution <a href="#actor-disappears">above</a>.
         </p>
+        
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
     </div>
     
     <div class="content-box" id="out-of-vision-not-triggered">
@@ -65,6 +69,8 @@
         <p>
             The other possibility is that the <code>resActorDetector</code> is not correctly set up for your game. In that case, the solution is the same as for the two problems <a href="#actor-disappears">above</a>.
         </p>
+        
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
     </div>
 
     <div class="content-box" id="mouse-events-not-working">
@@ -73,6 +79,8 @@
         <p>
             This problem and its solution are explained on the <em>Usage guide</em> page under <a href="../guide/index.html#make-compatible">Making your project Resolutionary compatible</a>.
         </p>
+        
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
     </div>
 
     <div class="content-box" id="game-runs-slow">
@@ -101,6 +109,8 @@
         <p>
             Another possible cause for low performance is if your z layer ordering is inefficient. The actors are added to the lists in order by their <em>z layer</em>, the higher the number, the closer to the end of the list the actor will be placed, so that it will be drawn last. If you, for example, have a lot of clones being created and destroyed all the time and their z layer is high, this means that whenever a new clone spawns, Resolutionary has to travel all the way through the list to find the correct place for the actor. If this is that case, there unfortunately is not much you can do to fix it. There are plans for making Resolutionary more efficient with creating great amounts of clones.
         </p>
+        
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
     </div>
     
     <div class="content-box" id="actor-not-visible">
@@ -123,6 +133,8 @@
             If you can't see your actor because it is parented, all you have to do is to let Resolutionary know about that. For this, use the function <a href="../reference/index.html#resChangeActorParent" title="resChangeActorParent(); on Resolutionary reference page"><code>resChangeActorParent();</code></a>:
         </p>
         <pre class="prettyprint"><code>resChangeActorParent("Event Actor", "parentActor"); // Set the actor 'parentActor' as the current actor's parent</code></pre>
+        
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
     </div>
     
     <div class="content-box" id="actor-in-wrong-position">
@@ -135,6 +147,8 @@
             This can be solved by simply letting Resolutionary know about the parenting. For this, use the function <a href="../reference/index.html#resChangeActorParent" title="resChangeActorParent(); on Resolutionary reference page"><code>resChangeActorParent();</code></a>:
         </p>
         <pre class="prettyprint"><code>resChangeActorParent("Event Actor", "parentActor"); // Set the actor 'parentActor' as the current actor's parent</code></pre>
+        
+        <p class="go-to-top"><a href="#page-top">Back to top</a></p>
     </div>
     
     <footer class="content-box">
