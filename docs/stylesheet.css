@@ -131,8 +131,8 @@ img.qa {
     background-color: white;
     text-align: center;
     border: solid lightgray 4px;
-    border-bottom: none;
-    border-bottom: solid lightgray 4px;
+    /* border-bottom: none; */ /* removed, had no effect? */
+    /* border-bottom: solid lightgray 4px; */ /* removed, had no effect? */
     padding: 0.5em;
     /* color: #666666; */
 }
@@ -144,7 +144,7 @@ img.qa {
     /* background: linear-gradient(lightgray, white); */
     /* box-shadow: 0 3px 4px lightgray; */
     /* border-bottom: solid white 4px; */
-    border-bottom: none;
+    /* border-bottom: none; */ /* removed, had no effect? */
 }
 
 .flex > a:hover {
