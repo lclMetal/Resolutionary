@@ -123,37 +123,29 @@ img.qa {
     box-sizing: border-box;
 }
 
-.flex > a, .flex > a:visited, .flex > a:link, .flex > span {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 20%;
+.topnav a, .topnav a:visited, .topnav > a:link, .topnav span{
+    width: 20%;
+    float: left;
+    display: block;
     box-sizing: border-box;
-    background-color: white;
     text-align: center;
+    background-color: white;
     border: solid lightgray 4px;
-    /* border-bottom: none; */ /* removed, had no effect? */
-    /* border-bottom: solid lightgray 4px; */ /* removed, had no effect? */
     padding: 0.5em;
-    /* color: #666666; */
 }
 
-.flex > span {
-    /* border: solid gray 4px; */
+.topnav span {
     border: solid white 4px;
-    color: black;
-    /* background: linear-gradient(lightgray, white); */
-    /* box-shadow: 0 3px 4px lightgray; */
-    /* border-bottom: solid white 4px; */
-    /* border-bottom: none; */ /* removed, had no effect? */
 }
 
-.flex > a:hover {
+.topnav a:hover {
     border: solid white 4px;
-    /* border-top: solid white 4px; */
-    /* border-bottom: solid white 4px; */
-    /* border-bottom: none; */
     color: #666666;
     text-decoration: underline;
+}
+
+.topnav + * {
+    clear: both;
 }
 
 .reference-nav {
@@ -182,7 +174,7 @@ img.qa {
     /* text-decoration: underline; */
 }
 
-.reference-nav + .content-box, body .flex:first-child + .content-box {
+.reference-nav + .content-box, body .topnav + .content-box {
     margin-top: 0;
 }
 
@@ -394,7 +386,7 @@ pre code {
     }
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 580px) {
     h2 a {
         font-size: 80%;
     }
@@ -403,13 +395,12 @@ pre code {
         flex-basis: 100%;
     }
     
-    .flex > a, .flex > a:visited, .flex > a:link, .flex > span {
-        flex-basis: 100%;
+    .topnav a, .topnav a:visited, .topnav a:link, .topnav span {
+        width: 100%;
     }
     
-    .flex > span {
+    .topnav span {
         border: solid lightgray 4px;
-        /* border: solid white 4px; */
     }
     
     .reference-nav a, .reference-nav span {
