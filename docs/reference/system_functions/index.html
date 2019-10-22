@@ -247,7 +247,7 @@ del = resSearchActorObject(&amp;getclone(clonename), &amp;prev); // Find del and
 resUnlinkActorObject(del, prev); // Unlink the actor object that represents the current actor
 
 if (del)       // If a corresponding actor object was actually found
-free(del); // Free the memory allocated for the actor object that represents the current actor
+    free(del); // Free the memory allocated for the actor object that represents the current actor
 
 del = NULL;    // Clear pointer</code></pre>
         <p class="go-to-top"><a href="#page-top">Back to top</a></p>
@@ -478,7 +478,7 @@ sprintf(text, "myString: %s\ncropOccured: %i", myString, cropOccured);
         <pre class="prettyprint">
 <code>if (!resCheckActorExistence("myActor")) // If myActor doesn't exist
 {
-DestroyActor("Event Actor"); // Destroy current actor
+    DestroyActor("Event Actor"); // Destroy current actor
 }</code></pre>
         <p class="go-to-top"><a href="#page-top">Back to top</a></p>
     </div>
@@ -499,7 +499,7 @@ DestroyActor("Event Actor"); // Destroy current actor
         <h3>Example call</h3>
         <pre class="prettyprint">
 <code>if (!resActorIsListed(&amp;collide)) // If collide actor is not listed yet
-resAddActorObject(&amp;collide); // Add it</code></pre>
+    resAddActorObject(&amp;collide); // Add it</code></pre>
         <p class="go-to-top"><a href="#page-top">Back to top</a></p>
     </div>
 
