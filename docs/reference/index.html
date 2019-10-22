@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../stylesheet.css" rel="StyleSheet" type="text/css" />
-    <!-- <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
     <title>API functions - Reference - Resolutionary documentation</title>
 </head>
 <body id="page-top">
@@ -15,18 +15,18 @@
         <span>Reference</span>
         <a href="../qa/">Q&amp;A</a>
     </nav>
-    
+
     <nav class="reference-nav">
         <span>API functions</span>
         <a href="system_functions/">System functions</a>
         <a href="actors/">Actors</a>
         <a href="variables/">Variables</a>
     </nav>
-    
+
     <div class="content-box">
-        
+
         <h1>API function reference</h1>
-    
+
         <div class="reference-flex">
             <div>
                 <h3>Actor control functions</h3>
@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="content-box" id="resChangeActorType">
         <h2><a href="#resChangeActorType">void resChangeActorType( const&nbsp;char&nbsp;*actorName, int&nbsp;type )</a></h2>
         <p>
@@ -118,7 +118,7 @@
         <pre class="prettyprint"><code>resChangeActorParent("Event Actor", "view"); // Tell Resolutionary that current actor is parented to view</code></pre>
         <p class="go-to-top"><a href="#page-top">Back to top</a></p>
     </div>
-    
+
     <div class="content-box" id="resStart">
         <h2><a href="#resStart">void resStart( int&nbsp;originalWidth, int&nbsp;originalHeight )</a></h2>
         <p>
@@ -188,7 +188,7 @@
         <pre class="prettyprint"><code>resSetBorderColor(0, 0, 0); // Make borders black</code></pre>
         <p class="go-to-top"><a href="#page-top">Back to top</a></p>
     </div>
-    
+
     <div class="content-box" id="resRequestStaticLayerUpdate">
         <h2><a href="#resRequestStaticLayerUpdate">void resRequestStaticLayerUpdate( void );</a></h2>
         <p>
@@ -420,12 +420,16 @@ if (resOnMouseButtonUp(RES_MOUSE_LEFT)) // If the left mouse button was just rel
 }</code></pre>
         <p class="go-to-top"><a href="#page-top">Back to top</a></p>
     </div>
-    
+
     <footer class="content-box">
         <p>2018 Lassi Lehtinen (aka lcl / lclMetal)</p>
         <address>
             lehtinen.lassi.c(at)gmail.com
         </address>
     </footer>
+
+    <p class="notice">
+        This site uses <a href="https://github.com/google/code-prettify">Google code-prettify</a> for syntax highlighting. Prettify is distributed under the <a href="https://raw.githubusercontent.com/google/code-prettify/master/COPYING">Apache 2.0 License</a> and is Copyright (C) 2011 Google Inc.
+    </p>
 </body>
 </html>

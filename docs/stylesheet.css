@@ -45,6 +45,11 @@ footer address {
     text-align: right;
 }
 
+.notice {
+    font-size: 0.8em;
+    text-align: center;
+}
+
 img.qa {
     width: 7em;
     height: auto;
@@ -331,40 +336,40 @@ pre code {
     h2 a {
         font-size: 85%;
     }
-    
+
     .flex > div {
         flex-basis: 50%;
     }
-    
+
     .reference-flex > div {
         flex-basis: 50%;
     }
-    
+
     .reference-nav a, .reference-nav span {
         flex-basis: 30%;
     }
-    
+
     .download-box {
         float: left;
         margin-right: 0;
     }
-    
+
     .download-box + * {
         clear: both;
     }
-    
+
     img.qa {
         margin-left: -1em;
     }
-    
+
     .content-box {
         padding: 0.5em 1em;
     }
-    
+
     .content-box ol, .content-box ul {
         padding-left: 1.5em;
     }
-    
+
     .screenshot-box {
         text-align: center;
         padding: 1em;
@@ -390,23 +395,23 @@ pre code {
     h2 a {
         font-size: 80%;
     }
-    
+
     .flex > div {
         flex-basis: 100%;
     }
-    
+
     .topnav a, .topnav a:visited, .topnav a:link, .topnav span {
         width: 100%;
     }
-    
+
     .topnav span {
         border: solid lightgray 4px;
     }
-    
+
     .reference-nav a, .reference-nav span {
         flex-basis: 100%;
     }
-    
+
     .download-box {
         padding: 0.5em 1em;
         background-size: auto 3.5rem;
@@ -414,34 +419,34 @@ pre code {
         background-position: 1.5em center;
         background-image: none;
     }
-    
+
     .download-box h3, .download-box p {
         padding-left: 0;
     }
-    
+
     img.qa {
         margin-left: -0.5em;
     }
-    
+
     .content-box {
         padding: 0.5em 0.5em;
     }
-    
+
     .content-box ol, .content-box ul {
         padding-left: 1em;
     }
-    
+
     .go-to-top {
         text-align: center;
         margin-bottom: 0.5em;
     }
-    
+
     .screenshot-box {
         text-align: center;
         padding: 0;
         max-width: 100%;
     }
-    
+
     .screenshot-box img {
         max-width: 100%;
     }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../stylesheet.css" rel="StyleSheet" type="text/css" />
-    <!-- <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
     <title>Q&amp;A - Resolutionary documentation</title>
 </head>
 <body id="page-top">
@@ -15,29 +15,29 @@
         <a href="../reference/">Reference</a>
         <span>Q&amp;A</span>
     </nav>
-    
+
     <div class="content-box">
         <h1>Q&amp;A</h1>
-        
+
         <p>
             Some questions answered.
         </p>
-        
+
         <h3>Questions</h3>
-        
+
         <ul>
             <li><a href="#is-it-free">Is Resolutionary free to use?</a></li>
             <li><a href="#bug-report">I found a bug, how do I report it?</a></li>
             <li><a href="#can-i-contribute">Can I contribute to the project?</a></li>
         </ul>
     </div>
-    
+
     <div class="content-box" id="is-it-free">
         <img src="../icon_qa_flipped.svg" alt="" class="qa" />
         <h2><a href="#is-it-free">Q: Is Resolutionary free to use?</a></h2>
-        
+
         <p><span class="answer-a">A:</span> Yes it is.</p>
-        
+
         <p>
             Resolutionary is <a href="https://github.com/lclMetal/Resolutionary/blob/master/LICENSE" title="Resolutionary license">licensed under the MIT license</a>. The license is very permissive and allows* you to:
         </p>
@@ -47,12 +47,12 @@
             <li>Freely modify Resolutionary</li>
             <li>Freely distribute Resolutionary</li>
         </ul>
-        
+
         <div class="important">
         <p>
             *the above permissions are granted by the following conditions:
         </p>
-        
+
         <ul>
             <li><strong>You shall include the license file in your game files.</strong><br />
             Put it in the same .zip, for example, and maybe rename it to <em>RESOLUTIONARY-LICENSE.TXT</em> for clarifying that the license applies only to Resolutionary, not your game.</li>
@@ -63,26 +63,26 @@
                 </ul></li>
         </ul>
         </div>
-        
+
         <p>
             <em><strong>Note: </strong>This is not legal advice!</em>
         </p>
-        
+
         <p class="go-to-top"><a href="#page-top">Back to top</a></p>
     </div>
-    
+
     <div class="content-box" id="bug-report">
         <img src="../icon_qa_flipped.svg" alt="" class="qa" />
         <h2><a href="#bug-report">Q: I found a bug, how do I report it?</a></h2>
-        
+
         <p>
             <span class="answer-a">A:</span> Before making a bug report, please make sure that you've carefully followed the instructions provided in the <a href="../guide/">Usage guide</a> and that the problem you're having doesn't already have a working solution listed on the <a href="../guide/">Usage guide</a> or the <a href="../support/">Support</a> page.
         </p>
-        
+
         <p>
             If you're certain that the bug you've encountered is something not covered on this site, make a bug report in either of the following two ways:
         </p>
-        
+
         <ul>
             <li>
                 Create a new issue on <a href="https://github.com/lclMetal/Resolutionary/issues" title="Resolutionary issues">Resolutionary's GitHub</a> (requires a GitHub account)
@@ -109,39 +109,39 @@
         </ul>
         <p class="go-to-top"><a href="#page-top">Back to top</a></p>
     </div>
-    
+
     <div class="content-box" id="can-i-contribute">
         <img src="../icon_qa_flipped.svg" alt="" class="qa" />
         <h2><a href="#can-i-contribute">Q: Can I contribute to the project?</a></h2>
-        
+
         <p><span class="answer-a">A:</span> Yes, you can. The preferable way is to use GitHub to make a pull request with your changes. However, if you're not familiar with using Git and GitHub and it all seems too complicated, you can still contribute by directly sharing your edited version of Resolutionary with me.</p>
-        
+
         <h3 class="p-subheader">Contributing using GitHub</h3>
-        
+
         <p>
             Create a GitHub account and fork the <a href="https://github.com/lclMetal/Resolutionary">Resolutionary repository</a>. If you're confident that you've managed to come up with a good addition or a bug fix, open a pull request from your fork. If the addition is good, it will then be merged to the main branch.
         </p>
-        
+
         <h3 class="p-subheader">Contributing outside of GitHub</h3>
-        
+
         <p>If you're confident that you've managed to come up with a good addition or a bug fix, put your files in a .zip, upload it somewhere and send me a download link at lehtinen.lassi.c(at)gmail.com together with an explanation of what you've done and what parts of Resolutionary you've edited in the process. If the addition is good, it will be added to Resolutionary.</p>
-        
+
         <div class="important">
             <h3>General guidelines on contributing</h3>
-            
+
             <p>Here's some advice for contributing to the project. Notice that the better you explain what you've done and why, the easier it will be to evaluate your contribution. Making the evaluation process easier is likely to increase the chances of your contribution being added to Resolutionary.</p>
-            
+
             <ol>
             <li>Adding new actors, animations, global variables or actor variables is not desirable, so try to avoid them if you can. Obviously, sometimes there is no other way than to use them - in such cases you're free to go ahead and do so.</li>
-            
+
             <li>All changes to the Global Code page <em>Resolutionary</em> must also be saved to the file Resolutionary.c. This makes it much easier to track any changes made to the code.</li>
-            
+
             <li>Document and explain what you do. Any changes in the events of the actors are not easily noticeable, so make sure to write down the changes and/or additions you've made. Explain what you've done and why. If you're contributing on GitHub, this info belongs to the Pull Request message. If you're contributing outside of GitHub, add this info either to the email or to a MESSAGE.txt file which you then include in the .zip.</li>
-            
+
             <li>If you make changes to code in the events of the project actors or add new events, please make sure to note which codes you changed and what modifications or additions you made.</li>
-            
+
             <li>Please follow the coding conventions of the project:
-            
+
             <ul>
                 <li>Maximum row length is 98 characters</li>
                 <li>Each indent is 4 spaces wide</li>
@@ -174,15 +174,19 @@ int resSum(int num1, int num2)
             </ul></li>
             </ol>
         </div>
-        
+
         <p class="go-to-top"><a href="#page-top">Back to top</a></p>
     </div>
-    
+
     <footer class="content-box">
         <p>2018 Lassi Lehtinen (aka lcl / lclMetal)</p>
         <address>
             lehtinen.lassi.c(at)gmail.com
         </address>
     </footer>
+
+    <p class="notice">
+        This site uses <a href="https://github.com/google/code-prettify">Google code-prettify</a> for syntax highlighting. Prettify is distributed under the <a href="https://raw.githubusercontent.com/google/code-prettify/master/COPYING">Apache 2.0 License</a> and is Copyright (C) 2011 Google Inc.
+    </p>
 </body>
 </html>

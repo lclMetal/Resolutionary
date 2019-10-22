@@ -79,7 +79,7 @@ typedef struct resActorObjectStruct
 struct resControllerStruct
 {
     int systemOn;             // Whether the system is currently running (1) or not (0)
-    
+
     double scale;             // The scale to resize the game to
     int originalScreenWidth;  // The width of the original resolution
     int originalScreenHeight; // The height of the original resolution
@@ -92,7 +92,7 @@ struct resControllerStruct
     int borderSize;           // The size of the black bars
     int mouseXOffset;         // The xscreen coordinate where the scaled view begins
     int mouseYOffset;         // The yscreen coordinate where the scaled view begins
- 
+
     Actor *mButtonActors[RES_MOUSE_BUTTONS];   // Clicked actors by mouse button
     char mButtonTopActorCName[RES_MOUSE_BUTTONS][RES_CLONENAME_SIZE]; // ...and of those the one
                                                                       // with the highest z depth
@@ -106,7 +106,7 @@ struct resControllerStruct
     resActorObject *dynamicActorListTail; // The end of the list of dynamic actors
     resActorObject *staticActorListHead;  // The beginning of the list of static actors
     resActorObject *staticActorListTail;  // The end of the list of static actors
- 
+
     unsigned int debugAllocatedByteCount; // Number of bytes currently allocated for the system
     int debugDynamicCount;                // Number of dynamic actors active
     int debugStaticCount;                 // Number of static actors active
@@ -189,9 +189,9 @@ void resChangeActorType(const char *actorName, int type)
 
     // Abort if the actor doesn't exist
     if (!resCheckActorExistence(cName)) return;
- 
+
     a = getclone(cName);    // Get the actor pointer according to cName
-    
+
     if (a->resIsOnActorObjectList) // If the actor is currently listed
     {
         resDeleteActorObject(a); // Remove the actor from its current list
@@ -221,9 +221,9 @@ void resChangeActorZLayer(const char *actorName, int zLayer)
 
     // Abort if the actor doesn't exist
     if (!resCheckActorExistence(cName)) return;
- 
+
     a = getclone(cName);        // Get the actor pointer according to cName
-    
+
     if (a->resIsOnActorObjectList) // If the actor is currently listed
     {
         resDeleteActorObject(a);    // Remove the actor from its current position
@@ -239,7 +239,7 @@ void resChangeActorZLayer(const char *actorName, int zLayer)
 // Make sure to always use this function together with Game Editor's ChangeParent function if
 // the parented actor is to be drawn by Resolutionary. If the system isn't notified of the change
 // in the actor's parenting, the actor will be drawn in a wrong position
-// 
+//
 // actorName - name of the child actor
 // parentName - name of the parent actor, if removing a parent, set this to "(none)"
 void resChangeActorParent(const char *actorName, const char *parentName)
@@ -257,7 +257,7 @@ void resChangeActorParent(const char *actorName, const char *parentName)
 
     // Abort if the child actor doesn't exist
     if (!resCheckActorExistence(cName)) return;
- 
+
     a = getclone(cName); // Get the actor pointer according to cName
 
     // If parentName is set to (none)
@@ -277,15 +277,15 @@ void resChangeActorParent(const char *actorName, const char *parentName)
 
     // Abort if the parent actor doesn't exist
     if (!resCheckActorExistence(cName2)) return;
- 
+
     a2 = getclone(cName2);                   // Get the parent actor pointer according to cName2
     a->resHasParent = RES_TRUE;              // Set child actor's hasParent to true
     strcpy(a->resParentName, a2->clonename); // Set child actor's parentName
-    
+
     if (a->resIsOnActorObjectList) // If the actor is currently listed
     {
         resActorObject *ptr = resSearchActorObject(a, NULL); // Find the corresponding actor object
-        
+
         if (ptr) strcpy(ptr->parentCName, a2->clonename); // Update the stored parent clonename
     }
 }
@@ -298,13 +298,13 @@ void resChangeActorParent(const char *actorName, const char *parentName)
 void resSetBackgroundColor(int rValue, int gValue, int bValue)
 {
     Actor *pBackground = NULL; // Pointer to background actor
-    
+
     resController.backgroundColor[0] = rValue;
     resController.backgroundColor[1] = gValue;
     resController.backgroundColor[2] = bValue;
-    
+
     pBackground = getclone("resBackground"); // Get pointer to background actor
-    
+
     if (pBackground->cloneindex != -1) // If background actor exists, color it as well
     {
         pBackground->r = resController.backgroundColor[0];
@@ -375,8 +375,8 @@ void resStart(int originalWidth, int originalHeight)
     pBackground->r = resController.backgroundColor[0];  // Set color r component
     pBackground->g = resController.backgroundColor[1];  // Set color g component
     pBackground->b = resController.backgroundColor[2];  // Set color b component
-    
-    
+
+
     // Initialize ActorDetector
     ChangeParent(pActorDetector->clonename, "view");  // Parent to view
     ChangeZDepth(pActorDetector->clonename, 0.0);     // Set z depth
@@ -504,7 +504,7 @@ void resStart(int originalWidth, int originalHeight)
 
     // Update static layer to make sure that the background gets colored at start
     resSendStaticLayerActivationEvent();
-    
+
     resController.systemOn = RES_TRUE; // Set system state variable to true
 }
 
@@ -520,7 +520,7 @@ void resQuit(void)
     DestroyActor("resStaticLayerCanvas");
     DestroyActor("resBorders");
     resDeleteActorObjectLists();
-    
+
     resController.systemOn = RES_FALSE; // Set system state variable to false
 }
 
@@ -671,9 +671,9 @@ resActorObject *resCreateActorObjectList(Actor *a)
         return NULL;
 
     ptr = malloc(sizeof *ptr); // Allocate memory for the new list item
- 
+
     if (ptr == NULL) return NULL; // Abort if memory allocation failed
- 
+
     #if RES_DEBUG // If the project is in debug mode
         // Update the system's memory usage variable
         resController.debugAllocatedByteCount += sizeof *ptr;
@@ -727,7 +727,7 @@ resActorObject *resAddActorObject(Actor *a)
     ptr = malloc(sizeof *ptr); // Allocate memory for the new list item
 
     if (ptr == NULL) return NULL; // Abort if memory allocation failed
- 
+
     #if RES_DEBUG // If the project is in debug mode
         // Update the system's memory usage variable
         resController.debugAllocatedByteCount += sizeof *ptr;
@@ -874,7 +874,7 @@ int resDeleteActorObject(Actor *a)
     if (del == NULL) return 0; // Abort if the searched object was not found
 
     resUnlinkActorObject(del, prev); // Remove the actor object's linking from the list
- 
+
     #if RES_DEBUG // If the project is in debug mode
         // Update the system's memory usage variable
         resController.debugAllocatedByteCount -= sizeof *del;
@@ -893,17 +893,17 @@ int resDeleteActorObject(Actor *a)
 int resDeleteActorObjectByPointer(resActorObject *del, resActorObject *prev)
 {
     Actor *a = NULL; // Pointer for the actor
- 
+
     // Abort if a NULL pointer was given
     if (del == NULL) return 0;
- 
+
     resUnlinkActorObject(del, prev); // Remove the actor object's linking from the list
- 
+
     #if RES_DEBUG // If the project is in debug mode
         // Update the system's memory usage variable
         resController.debugAllocatedByteCount -= sizeof *del;
     #endif
- 
+
     free(del);  // Free the memory previously occupied by the object
     del = NULL; // NULL the pointer
 
@@ -917,17 +917,17 @@ int resDeleteActorObjectByPointer(resActorObject *del, resActorObject *prev)
 int resUnlinkActorObject(resActorObject *del, resActorObject *prev)
 {
     Actor *a = NULL; // Pointer for the actor
- 
+
     // Abort if a NULL pointer was given
     if (del == NULL) return 0;
- 
+
     if (resCheckActorExistence(del->cName)) // Check if the actor object's actor exists
     {
         a = getclone(del->cName);              // Get the actor's address
         // Set the actor variable telling that the actor is not currently on a list
         a->resIsOnActorObjectList = RES_FALSE;
     }
- 
+
     // Remove the object's linking from the list by making the previous object's link point
     // to the object after the one that will be deleted. Also, handle the special cases if
     // the object to delete is either the head or the tail of the list
@@ -977,7 +977,7 @@ int resUnlinkActorObject(resActorObject *del, resActorObject *prev)
 
         resController.updateStaticLayer = RES_TRUE; // Raise the static layer update flag
     }
- 
+
     return 1; // Finish
 }
 
@@ -995,12 +995,12 @@ void resDeleteActorObjectLists(void)
         temp = ptr->next;                               // Get the pointer to the next item
         if (resCheckActorExistence(ptr->cName))             // If the actor exists,
             ptr->actor->resIsOnActorObjectList = RES_FALSE; // make it free for listing again
-            
+
         #if RES_DEBUG // If the project is in debug mode
             // Update the system's memory usage variable
             resController.debugAllocatedByteCount -= sizeof *ptr;
         #endif
-        
+
         free(ptr);                                      // Free the object's memory
         ptr = temp;                                     // Move on to the next object
     }
@@ -1013,16 +1013,16 @@ void resDeleteActorObjectLists(void)
         temp = ptr->next;                               // Get the pointer to the next item
         if (resCheckActorExistence(ptr->cName))             // If the actor exists,
             ptr->actor->resIsOnActorObjectList = RES_FALSE; // make it free for listing again
-            
+
         #if RES_DEBUG // If the project is in debug mode
             // Update the system's memory usage variable
             resController.debugAllocatedByteCount -= sizeof *ptr;
         #endif
-        
+
         free(ptr);                                      // Free the object's memory
         ptr = temp;                                     // Move on to the next object
     }
- 
+
     #if RES_DEBUG // If the project is in debug mode
         // Set the actor list count variables to 0
         resController.debugDynamicCount = 0;
@@ -1062,12 +1062,12 @@ void resDrawDynamicLayer(void)
         {
             // Get next object's address before the current object is deleted
             resActorObject *temp = ptr->next;
- 
+
             resDeleteActorObjectByPointer(ptr, prev); // Delete current actor object
             ptr = temp;                       // Move on to the next object
             continue; // There's no actor to draw, so skip the rest of this cycle
         }
- 
+
         a = ptr->actor; // Get the actor pointer
 
         if (!a->resHasParent) // If the actor doesn't have a parent
@@ -1084,7 +1084,7 @@ void resDrawDynamicLayer(void)
                 p = getclone(a->resParentName);             // Get the pointer to the parent
                 strcpy(ptr->parentCName, a->resParentName); // Store the parent's clonename
             }
- 
+
             if (resCheckActorExistence(ptr->parentCName)) // If the parent exists
                 // Draw the actor in relation to its parent's position
                 draw_from(ptr->cName, (p->x + a->x - viewX) * scale,
@@ -1094,7 +1094,7 @@ void resDrawDynamicLayer(void)
         prev = ptr;      // Store the current object's pointer
         ptr = ptr->next; // Move on to the next object
     }
- 
+
     #if RES_DEBUG // If the project is in debug mode
         resDisplayDebugOverlay(); // Display the debug overlay
     #endif
@@ -1111,23 +1111,23 @@ void resDrawStaticLayer(void)
     int viewX = resController.pView->x; // Get view's x coordinate
     int viewY = resController.pView->y; // Get view's y coordinate
     double scale = resController.scale; // Get the scale for drawing the actor
- 
+
     erase(0, 0, 0, 1); // Clear the canvas
- 
+
     while (ptr != NULL) // Traverse through the list
     {
         if (!resCheckActorExistence(ptr->cName)) // If the actor doesn't exist
         {
             // Get next object's address before the current object is deleted
             resActorObject *temp = ptr->next;
- 
+
             resDeleteActorObjectByPointer(ptr, prev); // Delete current actor object
             ptr = temp;                       // Move on to the next object
             continue; // There's no actor to draw, so skip the rest of this cycle
         }
- 
+
         a = ptr->actor; // Get the actor pointer
- 
+
         if (!a->resHasParent) // If the actor doesn't have a parent
             // Draw the actor
             draw_from(ptr->cName, (a->x - viewX) * scale,
@@ -1142,7 +1142,7 @@ void resDrawStaticLayer(void)
                 p = getclone(a->resParentName);             // Get the pointer to the parent
                 strcpy(ptr->parentCName, a->resParentName); // Store the parent's clonename
             }
- 
+
             if (resCheckActorExistence(ptr->parentCName)) // If the parent exists
                 // Draw the actor in relation to its parent's position
                 draw_from(ptr->cName, (p->x + a->x - viewX) * scale,
@@ -1184,7 +1184,7 @@ char resDebugFont[RES_DEBUG_FONT_CHAR_COUNT][RES_DEBUG_FONT_DOT_COUNT] =
     "0111010001011110000101110", "0000000100000000010000000", "0000000100000000010001000", // 9:;
     "0001000100010000010000010", "0000011111000001111100000", "0100000100000100010001000", // <=>
     "0111010001001100000000100", "0111010011101011001101000",                              // ?@
- 
+
     "0111010001100011111110001", "1111010010111111000111111", "0111110000100001000001111", // ABC
     "1111010001100011000111110", "1111110000111001000011111", "1111110000111001000010000", // DEF
     "0111010000101111000101110", "1000110001111111000110001", "0010000100001000010000100", // GHI
@@ -1196,7 +1196,7 @@ char resDebugFont[RES_DEBUG_FONT_CHAR_COUNT][RES_DEBUG_FONT_DOT_COUNT] =
     "1000101010001000010000100", "1111100010001000100011111", "0011000100001000010000110", // YZ[
     "0100000100000100001000001", "0110000100001000010001100", "0010001010100010000000000", // \]^
     "0000000000000000000011111", "0010000010000000000000000",                              // _`
- 
+
     "0000000111010010101100101", "0100001000011100100101110", "0000000111010000100000111", // abc
     "0000100001001110100100111", "0000000110010100110000111", "0001000101001000111000100", // def
     "0000000011001010001101110", "0100001000011100100101001", "0010000000001000010000100", // ghi
@@ -1221,11 +1221,11 @@ char resDebugFont[RES_DEBUG_FONT_CHAR_COUNT][RES_DEBUG_FONT_DOT_COUNT] =
 void resDisplayDebugOverlay(void)
 {
     int i, j; // Iterator variables
-    
+
     int cNum; // Current character's ASCII value converted to the corresponding font array entry
-    
+
     static unsigned short int mode = RES_DEBUG_SETTINGS;
-    
+
     int useLabelColor = 0; // Whether label coloring (green) is currently in use or not
     int useErrorColor = 0; // Whether error coloring (red) is currently in use or not
     int size = RES_DEBUG_FONT_DOT_SIZE; // Pen size for putpixel
@@ -1234,17 +1234,17 @@ void resDisplayDebugOverlay(void)
     int startY = RES_DEBUG_FONT_WIDTH; // Vertical margin from the top edge of the screen
     int xOffset = 0; // The x coordinate offset from the text start for the current character
     int yOffset = 0; // The y coordinate offset from the text start for the current character
-    
+
     enum resMouseButtonsEnum buttonNum; // Mouse button array iterator variable
-    
+
     int debugStringOverflow = 0; // This is set to 1 if the debug string was overflown
     static char debugString[RES_DEBUG_PRINT_MAX_LENGTH]; // The string to be printed
     char temp[50] = ""; // Temporary string for storing an actor's clonename
     char tempDActorNamesString[RES_DEBUG_PRINT_MAX_LENGTH] = ""; // Dynamic actor names list
     char tempSActorNamesString[RES_DEBUG_PRINT_MAX_LENGTH] = ""; // Static actor names list
-    
+
     resActorObject *ptr; // The list iterator pointer
-    
+
     static int keyStates[4];   // Stores the states of the keys used to control the overlay
     char *key = GetKeyState(); // Used for updating the stored states of the control keys
 
@@ -1254,28 +1254,28 @@ void resDisplayDebugOverlay(void)
         keyStates[0] = 1;               // Set key as pressed to avoid toggling repeatedly
     }
     else if (!key[KEY_F9]) keyStates[0] = 0; // On key release, set key as not pressed
-    
+
     if (key[KEY_F10] && !keyStates[1]) // If key was just pressed down
     {
         mode ^= RES_DEBUG_LIST_DYNAMIC; // Toggle listing dynamic actors' names on / off
         keyStates[1] = 1;               // Set key as pressed to avoid toggling repeatedly
     }
     else if (!key[KEY_F10]) keyStates[1] = 0; // On key release, set key as not pressed
-    
+
     if (key[KEY_F11] && !keyStates[2]) // If key was just pressed down
     {
         mode ^= RES_DEBUG_LIST_STATIC; // Toggle listing static actors' names on / off
         keyStates[2] = 1;              // Set key as pressed to avoid toggling repeatedly
     }
     else if (!key[KEY_F11]) keyStates[2] = 0; // On key release, set key as not pressed
-    
+
     if (key[KEY_F12] && !keyStates[3]) // If key was just pressed down
     {
         mode ^= RES_DEBUG_LIST_CLICKED; // Toggle listing clicked actors' names on / off
         keyStates[3] = 1;               // Set key as pressed to avoid toggling repeatedly
     }
     else if (!key[KEY_F12]) keyStates[3] = 0; // On key release, set key as not pressed
-    
+
     // Only update debugString every # frames, where # = RES_DEBUG_UPDATE_FREQ
     if (frame % RES_DEBUG_UPDATE_FREQ == 0){
     // Print system info, overlay controls, resolution info and memory usage to debugString
@@ -1291,11 +1291,11 @@ void resDisplayDebugOverlay(void)
             "$Scaled resolution$",
             resController.scaledScreenWidth, resController.scaledScreenHeight,
             "$Memory allocated$", (double)(resController.debugAllocatedByteCount / 1024.0));
- 
+
     ptr = resController.dynamicActorListHead; // Set list iterator to dynamic actor list head
     resController.debugDynamicCount = 0;      // Reset dynamic actor count variable to 0
     sprintf(tempDActorNamesString, "\n\n$Dynamic actor list$:"); // Initialize string
- 
+
     while (ptr != 0) // Traverse through the dynamic actor list
     {
         // If dynamic actor name listing is on, print actor names to string,
@@ -1307,24 +1307,24 @@ void resDisplayDebugOverlay(void)
             sprintf(temp, "%s%s", (changeLine)?"\n ":" ", ptr->cName);
             resSafeStrcat(tempDActorNamesString, temp, sizeof tempDActorNamesString);
         }
-        
+
         resController.debugDynamicCount ++; // Increment dynamic actor count variable
         ptr = ptr->next;                    // Move on to the next object
     }
-    
+
     // If listing is on, but the list is empty
     if (mode & RES_DEBUG_LIST_DYNAMIC && !resController.debugDynamicCount)
         resSafeStrcat(tempDActorNamesString, "\n --- empty ---", sizeof tempDActorNamesString);
-    
+
     // Print dynamic actor count
     sprintf(temp, "\n$Dynamic actor count$:  %3i", resController.debugDynamicCount);
     if (!debugStringOverflow)
         debugStringOverflow = resSafeStrcat(debugString, temp, sizeof debugString);
- 
+
     ptr = resController.staticActorListHead; // Set list iterator to static actor list head
     resController.debugStaticCount = 0;      // Reset static actor count variable to 0
     sprintf(tempSActorNamesString, "\n\n$Static actor list$:"); // Initialize string
- 
+
     while (ptr != 0) // Traverse through the static actor list
     {
         // If static actor name listing is on, print actor names to string,
@@ -1336,15 +1336,15 @@ void resDisplayDebugOverlay(void)
             sprintf(temp, "%s%s", (changeLine)?"\n ":" ", ptr->cName);
             resSafeStrcat(tempSActorNamesString, temp, sizeof tempSActorNamesString);
         }
-        
+
         resController.debugStaticCount ++; // Increment static actor count variable
         ptr = ptr->next;                   // Move on to the next object
     }
-    
+
     // If listing is on, but the list is empty
     if (mode & RES_DEBUG_LIST_STATIC && !resController.debugStaticCount)
         resSafeStrcat(tempSActorNamesString, "\n --- empty ---", sizeof tempSActorNamesString);
-    
+
     // Print static actor count
     sprintf(temp, "\n$Static actor count$:   %3i", resController.debugStaticCount);
     if (!debugStringOverflow)
@@ -1358,7 +1358,7 @@ void resDisplayDebugOverlay(void)
         {
             char tempName[50];        // String variable for temporarily storing an actor's name
             char tempActorNames[512]; // String variable for temporarily storing all actors' names
-                        
+
             // Print the name of the top actor, or (none), if there's no top actor
             sprintf(tempActorNames, "\n\n$Mouse %i top actor$:\n %s",
                     buttonNum + 1,
@@ -1370,15 +1370,15 @@ void resDisplayDebugOverlay(void)
             {
                 sprintf(tempName, "\n$Mouse %i clicked actors$:", buttonNum + 1);
                 resSafeStrcat(tempActorNames, tempName, sizeof tempActorNames);
-                
+
                 // Iterate through the array of clicked actors
                 for (i = 0; i < resController.mButtonActorCount[buttonNum]; i ++)
                 {
                     int changeLine = (i % (int)max(1, RES_DEBUG_NAMES_PER_LINE) == 0);
-            
+
                     sprintf(tempName, "%s%s", (changeLine)?"\n ":" ",
                             resController.mButtonActors[buttonNum][i].clonename);
-                            
+
                     // Concatenate tempName to tempActorNames
                     resSafeStrcat(tempActorNames, tempName, sizeof tempActorNames);
                 }
@@ -1389,18 +1389,18 @@ void resDisplayDebugOverlay(void)
                     resSafeStrcat(debugString, tempActorNames, sizeof debugString);
         }
     }
-    
+
     // If listing dynamic actors is on, and there's space in debugString, print the list
     if (mode & RES_DEBUG_LIST_DYNAMIC && !debugStringOverflow)
         debugStringOverflow =
             resSafeStrcat(debugString, tempDActorNamesString, sizeof debugString);
-    
+
     // If listing static actors is on, and there's space in debugString, print the list
     if (mode & RES_DEBUG_LIST_STATIC && !debugStringOverflow)
         debugStringOverflow =
             resSafeStrcat(debugString, tempSActorNamesString, sizeof debugString);
     }
-    
+
     // If debugString was overflown, show an error message suggesting to increase the string's size
     if (debugStringOverflow)
     {
@@ -1408,7 +1408,7 @@ void resDisplayDebugOverlay(void)
             "\n\n#Debug string overflown!# Increase $RES_DEBUG_PRINT_MAX_LENGTH$.";
         sprintf(&debugString[RES_DEBUG_PRINT_MAX_LENGTH - sizeof errText], "%s", errText);
     }
-        
+
     if (!(mode & RES_DEBUG_DRAW_OVERLAY)) return; // If the overlay drawing is off, finish
 
     // Iterate through debugString character by character
@@ -1416,7 +1416,7 @@ void resDisplayDebugOverlay(void)
     {
         // Convert current character's ASCII value to the corresponding font array entry
         cNum = max(0, min(debugString[i] - (int)'!', RES_DEBUG_FONT_CHAR_COUNT - 1));
- 
+
         switch (debugString[i])
         {
             case ' ': // If the character is a space, draw the background and increment xOffset
@@ -1425,12 +1425,12 @@ void resDisplayDebugOverlay(void)
                          startY + yOffset + size * 2);
                 xOffset ++;
             break;
- 
+
             case '\n': // If the character is a newline character
                 yOffset += RES_DEBUG_FONT_LINE_SPACING * size; // Increment yOffset
                 xOffset = 0;                                   // Reset xOffset to 0
             break;
-            
+
             case '$': // If the character is a non-escaped label marker, toggle label coloring
                 if (i < RES_DEBUG_PRINT_MAX_LENGTH && debugString[i + 1] != '$')
                 {
@@ -1438,7 +1438,7 @@ void resDisplayDebugOverlay(void)
                     break;
                 }
                 else i ++; // Character was escaped ($$), so print it
-                
+
             case '#': // If the character is a non-escaped error marker, toggle error coloring
                 if (debugString[i] == '#' &&
                     i < RES_DEBUG_PRINT_MAX_LENGTH && debugString[i + 1] != '#')
@@ -1447,19 +1447,19 @@ void resDisplayDebugOverlay(void)
                     break;
                 }
                 else if (debugString[i] == '#') i ++; // Character was escaped (##), so print it
- 
+
             default: // All other cases
                 setpen(0, 0, 0, 0, bgPenSize);
                 putpixel(startX + ((xOffset * RES_DEBUG_FONT_SPACING) * size) + size * 2,
                          startY + yOffset + size * 2); // Draw the background
- 
+
                 if (!useLabelColor && !useErrorColor)
                     setpen(255, 255, 255, 0, size); // Set pen for drawing a normal character
                 else if (useLabelColor)
                     setpen(0, 255, 0, 0, size);     // Set pen for drawing a label character
                 else if (useErrorColor)
                     setpen(255, 0, 0, 0, size);     // Set pen for drawing an error character
- 
+
                 // Iterate through the font array's entry for the current character
                 for (j = 0; j < RES_DEBUG_FONT_DOT_COUNT - 1; j ++)
                 {
@@ -1469,7 +1469,7 @@ void resDisplayDebugOverlay(void)
                                  (j % RES_DEBUG_FONT_WIDTH)) * size,
                                  startY + yOffset + (j / RES_DEBUG_FONT_WIDTH) * size);
                 }
- 
+
                 xOffset ++; // Increment xOffset
             break;
         }
@@ -1533,12 +1533,12 @@ int resUpdateMouseButtonDown(enum resMouseButtonsEnum mButtonNumber)
             resController.debugAllocatedByteCount -=
                 resController.mButtonActorCount[mButtonNumber] * sizeof *actors;
         #endif
-        
+
         free(resController.mButtonActors[mButtonNumber]);   // Free the memory
         resController.mButtonActors[mButtonNumber] = NULL;  // Set the pointer to NULL
         resController.mButtonActorCount[mButtonNumber] = 0; // Set the count to 0
     }
- 
+
     // Reset the variable used to store the top actor's name
     strcpy(resController.mButtonTopActorCName[mButtonNumber], "");
 
@@ -1551,7 +1551,7 @@ int resUpdateMouseButtonDown(enum resMouseButtonsEnum mButtonNumber)
         // Copy the contents of the array returned by getAllActorsInCollision to
         // the allocated chunk of memory
         memcpy(resController.mButtonActors[mButtonNumber], actors, count * sizeof *actors);
-        
+
         #if RES_DEBUG // If the project is in debug mode
             // Update the system's memory usage variable
             resController.debugAllocatedByteCount += count * sizeof *actors;
@@ -1561,7 +1561,7 @@ int resUpdateMouseButtonDown(enum resMouseButtonsEnum mButtonNumber)
         return 2; // Finish
 
     resController.activeButton = mButtonNumber; // Set the mouse button as the active one
- 
+
     // Of the clicked actors, find the one with the highest z depth. To achieve this, start
     // from the end of the array and iterate through it backwards until a valid actor (any other
     // than resActorDetector) has been found or the beginning of the array is reached
@@ -1603,12 +1603,12 @@ void resUpdateMouseButtonUp(enum resMouseButtonsEnum mButtonNumber)
     // Set the mouse button's state to not pressed
     resController.mButtonState[mButtonNumber] = RES_MOUSE_UP;
     resController.activeButton = mButtonNumber; // Set the mouse button as the active one
- 
+
     // If a top actor exists
     if (strlen(resController.mButtonTopActorCName[mButtonNumber]) > 0)
         // Send activation event to the top actor
         SendActivationEvent(resController.mButtonTopActorCName[mButtonNumber]);
- 
+
     // Reset the variable used to store the top actor's name
     strcpy(resController.mButtonTopActorCName[mButtonNumber], "");
 
@@ -1620,7 +1620,7 @@ void resUpdateMouseButtonUp(enum resMouseButtonsEnum mButtonNumber)
         {
             SendActivationEvent(resController.mButtonActors[mButtonNumber][i].clonename);
         }
- 
+
         #if RES_DEBUG // If the project is in debug mode
             // Update the system's memory usage variable
             resController.debugAllocatedByteCount -=
@@ -1650,9 +1650,9 @@ int resSafeStrcat(char *destination, const char *source, int maxLen)
     int sLen = strlen(source);                        // Current length of source string
     int catLen = sLen - (dLen + sLen - (maxLen - 1)); // Calculate how many characters at most
                                                       // can be concatenated to destination
-                    
+
     strncat(destination, source, catLen); // Concatenate as much as possible
-    
+
     return (catLen < sLen); // Return 1 if some of the source string had to be left out
 }
 

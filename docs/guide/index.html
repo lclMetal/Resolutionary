@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../stylesheet.css" rel="StyleSheet" type="text/css" />
-    <!-- <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert"></script>
     <title>Usage guide - Resolutionary documentation</title>
 </head>
 <body>
@@ -15,106 +15,106 @@
         <a href="../reference/">Reference</a>
         <a href="../qa/">Q&amp;A</a>
     </nav>
-    
+
     <div class="content-box">
         <h1>Usage guide</h1>
-        
+
         <div class="download-box">
             <h3>Download Resolutionary</h3>
             <p>Resolutionary 1.0.0 zip <a href="https://github.com/lclMetal/Resolutionary/archive/master.zip">[download]</a>
             <br /><span class="small-note">Compatible with Game Editor 1.4.0 and newer</span></p>
         </div>
-        
+
         <p>
             Instructions on setting up and using Resolutionary.
         </p>
-        
+
         <h3>Before you start</h3>
-        
+
         <ul class="index-list">
             <li><a href="#limitations">Limitations</a></li>
         </ul>
-        
+
         <h3>Resolutionary in 4 steps</h3>
-        
+
         <ol class="index-list">
             <li><a href="#getting-started">Getting started</a></li>
             <li><a href="#initial-configuration">Initial configuration</a></li>
             <li><a href="#changing-resolution">Changing the resolution</a></li>
             <li><a href="#make-compatible">Making your project Resolutionary compatible</a></li>
         </ol>
-        
+
         <h3>Further information</h3>
-        
+
         <ul class="index-list">
             <li><a href="#debugging">Debugging</a></li>
         </ul>
     </div>
-    
+
     <div class="content-box" id="limitations">
         <h2><a href="#limitations">Limitations</a></h2>
-        
+
         <p>
             Resolutionary relies on Game Editor's <a href="http://game-editor.com/docs/script_reference.htm#draw_from" title="draw_from(); on Game Editor script reference"><code>draw_from();</code></a> function for resizing the actors, and thus, has the same limitations as the original function. Before you start implementing Resolutionary into your game, you should consider these limitations.
         </p>
-        
+
         <div class="screenshot-box right">
             <a href="illustration_transparency_bug.png" title="View full picture"><img src="illustration_transparency_bug.png" alt="Illustration showing how the canvases handle drawing transparent actors." /></a>
             <p>Drawing transparent actors on a canvas produces lacking results. A comparison between the original game view and how it looks when rendered in Resolutionary as two dynamic actors.</p>
         </div>
-        
+
         <h3 class="p-subheader">Transparency is broken</h3>
-        
+
         <p>
             The way canvases in Game Editor handle drawing transparent actors is pretty bad for Resolutionary - the colors of the actor get distorted and the area of the canvas itself becomes transparent.
         </p>
-        
+
         <p>
             To make matters worse, this also applies to any transparency in the animations of the actors. So, images that utilize an alpha layer to add transparency to individual pixels will be distorted. Using anti-aliased .png-images, for example, will result in visible artifacts on the outer edges of the animation.
         </p>
-        
+
         <h3 class="p-subheader">Resizing tile actors is not supported</h3>
-        
+
         <p>
             If you've already built your levels using the Game Editor's built-in tiling feature, the only way to make the project fully compatible with Resolutionary is to redo the levels in some other form.
         </p>
-        
+
         <h3 class="p-subheader">Resizing text actors is not supported</h3>
-        
+
         <p>
             You will have to use some other methods for resizing any text actors in your game. One possible solution could be to position all text actors relative to the edges of the screen, and then use different font sizes for different resolutions. Another way to solve the problem for static text actors could be to convert them to normal actors with pictures of the text.
         </p>
     </div>
-    
+
     <div class="content-box" id="getting-started">
         <h2><a href="#getting-started">1. Getting started</a></h2>
-        
+
         <div class="screenshot-box right">
             <a href="screenshot_merge.png" title="View full picture"><img src="screenshot_merge.png" alt="Screenshot showing where to find the merge option in Game Editor." /></a>
             <p>Merging the Resolutionary template to a game.</p>
         </div>
-        
+
         <p>
             After you've considered the <a href="#limitations">limitations</a> of the system and concluded that your game is compatible with Resolutionary, read here for instructions on how to get Resolultionary, and how to merge it into your game.
         </p>
-        
+
         <ol>
             <li>Download the most up-to-date version of Resolutionary as a .zip package via the link above.</li>
             <li>Use a program like WinRAR or 7-Zip to extract the files from the .zip.</li>
             <li>Open your game in Game Editor.</li>
             <li>Select File -> Merge and navigate to the folder where you extracted the files from the .zip. Select "Resolutionary_template.ged" as the file to be merged into your game. It can be found inside the folder "Template".</li>
         </ol>
-        
-        
+
+
     </div>
-    
+
     <div class="content-box" id ="initial-configuration">
         <h2><a href="#initial-configuration">2. Initial configuration</a></h2>
-        
+
         <p>
             These are the steps that you have to take after merging Resolutionary to your game for deploying the system.
         </p>
-        
+
         <ol class="index-list">
             <li><a href="#set-bg-color">Set the background color (optional)</a></li>
             <li><a href="#set-border-color">Set the border color (optional)</a></li>
@@ -122,12 +122,12 @@
             <li><a href="#call-resQuit">Set up a resQuit(); call to terminate the system</a></li>
             <li><a href="#resize-resActorDetector">Resize resActorDetector</a></li>
         </ol>
-        
+
         <div class="screenshot-box right">
             <a href="screenshot_colors.png" title="View full picture"><img src="screenshot_colors.png" alt="Screenshot showing the user defined colors for the game background and the &quot;black&quot; bars." /></a>
             <p>Background color has been set to gray, and black bars are set to be black.</p>
         </div>
-        
+
         <ol>
             <li id="set-bg-color">(optional) Use <a href="../reference/index.html#resSetBackgroundColor" title="resSetBackgroundColor(); on Resolutionary reference page"><code>resSetBackgroundColor();</code></a> to set a background color for your game. If you don't specify a color, the color black will be used by default.</li>
             <li id="set-border-color">(optional) Use <a href="../reference/index.html#resSetBorderColor" title="resSetBorderColor(); on Resolutionary reference page"><code>resSetBorderColor();</code></a> to set a color for the borders that will appear if the game is scaled to a resolution with an aspect ratio differing from the original resolution. These borders are often called "black bars", but you can use any color you like. If you don't specify a color, the color black will be used by default.</li>
@@ -135,7 +135,7 @@
             <li id="call-resQuit">Use <a href="../reference/index.html#resQuit" title="resQuit(); on Resolultionary reference page"><code>resQuit();</code></a> in a Key Down event of your choice (excluding Esc) to quit the Resolutionary system before exiting the Game Editor game mode. This is important for avoiding memory leaks. More information can be found on the <a href="../reference/index.html#resQuit">Resolutionary Reference page</a>.</li>
             <li id="resize-resActorDetector">Resize the Filled Region actor called <code>resActorDetector</code> by dragging its corner so that it is the same size as the <code>view</code> actor in the original resolution of the game.</li>
         </ol>
-        
+
         <p>
             The calls to <code>resSetBackgroundColor();</code>, <code>resSetBorderColor();</code> and <code>resStart();</code> can, for example, be placed in the Create Actor event of <code>view</code>, so that the system will start up right away with the game.
         </p>
@@ -147,19 +147,19 @@ resSetBorderColor(0, 0, 0);           // Make the borders black
 resStart(640, 480);                   // Start Resolutionary (the original resolution of the game is 640 x 480)
 </code></pre>
     </div>
-    
+
     <div class="content-box" id="changing-resolution">
         <h2><a href="#changing-resolution">3. Changing the resolution</a></h2>
-        
+
         <p>
             These are the steps that you have to take every time you want to change the resolution of your game.
         </p>
-        
+
         <ol>
             <li>Set the resolution of your choice for the game from <em>Config -> Game Properties -> Game resolution</em>.</li>
             <li>Resize the actors <code>resDynamicLayerCanvas</code>, <code>resStaticLayerCanvas</code> and <code>resMouseClickDetector</code> so that they are the same size as the <code>view</code> actor.</li>
         </ol>
-        
+
         <p>
             If you now enter Game Mode, you will see your game scaled to the resolution you selected. There may be some errors in the way your game is drawn, but don't worry, that's just because so far we've only set up the basic parts of Resolutionary, that are the same for every project. After these steps some further adjusting may be needed to fix positioning problems and to increase the performance of the scaling system.
         </p>
@@ -167,108 +167,112 @@ resStart(640, 480);                   // Start Resolutionary (the original resol
             Check the <a href="../support/">support page</a> for help on solving a variety of basic issues that may occur before adjusting the system properly for your game.
         </p>
     </div>
-    
+
     <div class="content-box" id="make-compatible">
         <h2><a href="#make-compatible">4. Making your project Resolutionary compatible</a></h2>
-        
+
         <p>
             In order to have your game function correctly after changing its resolution with Resolutionary, you'll have to make some changes in it.
         </p>
-        
+
         <ul>
             <li><a href="#convert-out-of-vision">Convert <em>Out of Vision</em> events to <em>Collision Finish</em> from <code>resActorDetector </code></a></li>
             <li><a href="#convert-mouse-enter-leave">Convert <em>Mouse Enter</em> and <em>Mouse Leave</em> events to <em>Collision</em> and <em>Collision Finish</em> events with <code>resMouse</code></a></li>
             <li><a href="#convert-mouse-down-up">Convert <em>Mouse Button Down</em> and <em>Mouse Button Up</em> events to <em>Activation Event</em> from <code>resMouseClickDetector</code></a></li>
         </ul>
-        
+
         <h3 id="convert-out-of-vision" class="p-subheader">Convert <em>Out of Vision</em> events to <em>Collision Finish</em> from <code>resActorDetector</code></h3>
-        
+
         <p>
             <em>Why:</em> The <em>Out of Vision</em> event of an actor is triggered when the actor leaves the area of the <code>view</code> actor. This makes the correct behavior of the <em>Out of Vision</em> events depend on the <code>view</code> actor being exactly the size of the visible game area, like it almost always is. But when changing the resolution of the game, the size of the <code>view</code> actor also changes. And as the main purpose of Resolutionary is to make it possible to change the resolution of a game, the consequence is that the <em>Out of Vision</em> events are not compatible with Resolutionary. Luckily, the <a href="../reference/actors/index.html#resActorDetector" title="resActorDetector on Resolutionary reference page"><code>resActorDetector</code></a> actor is sized exactly the same as the original size of the <code>view</code> actor (see <a href="#initial-configuration">Initial Configuration: 5</a>), so it can be used to simulate the <em>Out of Vision</em> functionality.
         </p>
-        
+
         <div class="screenshot-box right">
             <a href="illustration_misalignment.png" title="View full picture"><img src="illustration_misalignment.png" alt="Illustration showing the misalignment between the actors and the scaled drawings that represent them." /></a>
             <p>The actual game view and the Resolutionary view illustrated in relation to each other. The magenta blocks are the actual actors and the cyan blocks show where Resolutionary draws them. Two arbitrary actors have been labelled together with their Resolutionary counterparts.</p>
         </div>
-        
+
         <h3 id="convert-mouse-enter-leave" class="p-subheader">Convert <em>Mouse Enter</em> and <em>Mouse Leave</em> events to <em>Collision</em> and <em>Collision Finish</em> events with <code>resMouse</code></h3>
-        
+
         <p>
             <em>Why:</em> Game Editor only registers <em>Mouse Enter</em> & <em>Mouse Leave</em> events for the actor with the highest z depth at the position of the mouse. The canvas actors that Resolutionary uses to draw the scaled game hide all the actors of the original game, disabling their <em>Mouse Enter</em> & <em>Mouse Leave</em> events completely. As a workaround the <a href="../reference/actors/index.html#resMouse" title="resMouse on Resolutionary reference page"><code>resMouse</code></a> actor is used to simulate the mouse position, so any <em>Collision</em> and <em>Collision Finish</em> events with it can be treated as alternatives for <em>Mouse Enter</em> and <em>Mouse Leave</em>.
         </p>
-        
+
         <h3 id="convert-mouse-down-up" class="p-subheader">Convert <em>Mouse Button Down</em> and <em>Mouse Button Up</em> events to <em>Activation Event</em> from <code>resMouseClickDetector</code></h3>
-        
+
         <p>
             <em>Why:</em> Resolutionary doesn't scale the actual actors in the game, it just draws them on a canvas with the correct scale. With the resized actors being merely drawings on a canvas, they can't be clicked - the <em>Mouse Button Down</em> & <em>Mouse Button Up</em> events are not triggered for the actors by clicking their drawings. Also, the actual actors don't line up with their resized drawings correctly, so using <a href="http://game-editor.com/docs/script_reference.htm#eventdisable" title="EventDisable(); on Game Editor script reference"><code>EventDisable();</code></a> to disable mouse events for the Resolutionary actors for allowing clicking through them would still not solve the problem - see the illustration that demonstrates this misalignment.
         </p>
     </div>
-    
+
     <div class="content-box" id="debugging">
         <h2><a href="#debugging">Debugging</a></h2>
-        
+
         <p>
             Resolutionary has a built-in Debug Overlay for inspecting the system's status during run time. To enable the Debug Overlay, set <code>RES_DEBUG</code> to 1.
         </p>
-        
+
         <div class="screenshot-box right">
             <a href="screenshot_debug_overlay_big_2.png" title="View full picture"><img src="screenshot_debug_overlay_big_2.png" alt="Screenshot showing the Resolutionary built-in Debug Overlay." /></a>
             <p>The built-in Debug Overlay
             (<code>RES_DEBUG_FONT_DOT_SIZE</code> has been set to 2 for improved legibility).</p>
         </div>
-        
+
         <h3 class="p-subheader">Overview</h3>
-        
+
         <p class="important">
             <strong>Important</strong>
             <br />The Debug Overlay is drawn using <a href="http://game-editor.com/docs/script_reference.htm#putpixel" title="putpixel(); on Game Editor script reference"><code>putpixel();</code></a> and is thus likely to decrease the overall performance of the system.
         </p>
-        
+
         <p>
             The Debug Overlay can be used to inspect what's going on inside Resolutionary at any moment of the game. It can display the following information:
         </p>
-        
+
         <ul>
             <li>The number of currently active dynamic and static actors</li>
             <li>The amount of memory allocated for the system (KiB)</li>
             <li>What actor(s) are being clicked by what mouse button, and which of them is the <em>"top actor"</em></li>
             <li>Listings* of the names of the currently active dynamic and static actors</li>
         </ul>
-        
+
         <p>* <em>The actors are listed in the same exact order as they are drawn, i.e. ordered by their ascending z layer.</em></p>
-        
+
         <h3 class="p-subheader">Debug Overlay controls</h3>
-        
+
         <p>The mode of the Debug Overlay can be controlled by the keys <strong>F9 - F12</strong>.</p>
-        
+
         <ul>
             <li><strong>F9</strong>: toggle overlay drawing on / off</li>
             <li><strong>F10</strong>: toggle listing of dynamic actors on / off</li>
             <li><strong>F11</strong>: toggle listing of static actors on / off</li>
             <li><strong>F12</strong>: toggle listing of clicked actors on / off</li>
         </ul>
-        
+
         <h3 class="p-subheader">Debug Overlay display settings</h3>
-        
+
         <p>You can adjust these values to modify the behavior of the overlay.</p>
-        
+
         <p><code>RES_DEBUG</code> enables and disables the Debug Overlay <em>(enable: 1, disable: 0)</em>.</p>
-        
+
         <p><code>RES_DEBUG_UPDATE_FREQ</code> determines how many frames the system will wait before updating the data shown on the overlay <em>(default: 5)</em>.</p>
-        
+
         <p><code>RES_DEBUG_NAMES_PER_LINE</code> determines how many actor names will be printed on one line <em>(default: 5)</em>.</p>
-        
+
         <p><code>RES_DEBUG_PRINT_MAX_LENGTH</code> determines the size (number of characters) of the debug string. If the overlay says that the debug string has been overflown, you can solve the problem by increasing this value <em>(default: 2048)</em>.</p>
-        
+
         <p><code>RES_DEBUG_FONT_DOT_SIZE</code> determines the size of an individual pixel on the Debug Overlay. Increasing the value makes the text larger <em>(default: 1)</em>.</p>
     </div>
-    
+
     <footer class="content-box">
         <p>2018 Lassi Lehtinen (aka lcl / lclMetal)</p>
         <address>
             lehtinen.lassi.c(at)gmail.com
         </address>
     </footer>
+
+    <p class="notice">
+        This site uses <a href="https://github.com/google/code-prettify">Google code-prettify</a> for syntax highlighting. Prettify is distributed under the <a href="https://raw.githubusercontent.com/google/code-prettify/master/COPYING">Apache 2.0 License</a> and is Copyright (C) 2011 Google Inc.
+    </p>
 </body>
 </html>
