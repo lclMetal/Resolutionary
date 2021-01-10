@@ -305,7 +305,7 @@ void resSetBackgroundColor(int rValue, int gValue, int bValue)
 
     pBackground = getclone("resBackground"); // Get pointer to background actor
 
-    if (pBackground->cloneindex != -1) // If background actor exists, color it as well
+    if (resCheckActorExistence(pBackground->clonename)) // If background actor exists, color it as well
     {
         pBackground->r = resController.backgroundColor[0];
         pBackground->g = resController.backgroundColor[1];
@@ -1692,7 +1692,19 @@ void resEnableMouseEvents(const char *actorName)
 // returns: 1 if actor exists, 0 if not
 int resCheckActorExistence(const char *actorName)
 {
-    return (getclone(actorName)->cloneindex != -1);
+    // GE uses the cloneindex -1 to indicate that an actor is not a valid, existing actor.
+    // The actor count needs to be checked because:
+    //
+    // 1. IF an actor with the given base name exists in the project
+    // 2. AND the lowest indexed clone (= the actor itself, if no clones present)
+    //      in editor mode has "Create at startup" set to "No"
+    // 3. AND the actor currently has no alive instances in the game
+    //
+    // ..getclone will return an invalid Actor* that has the cloneindex of that specific
+    // clone / actor over in editor mode despite it not existing in the game.
+    // And that would break this function without the ActorCount check.
+    Actor *a = getclone(actorName);
+    return (ActorCount(a->name) > 0 && a->cloneindex != -1);
 }
 
 // This function checks if an actor has already been added
