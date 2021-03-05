@@ -10,7 +10,7 @@
 //                               THE GAME SCALING SYSTEM / Version 1.0 / by lcl 2017 - 2018    \\
 
 // Settings for drawing the debug overlay
-#define RES_DEBUG 1                     // Enable (1) or disable (0) debugging
+#define RES_DEBUG 0                     // Enable (1) or disable (0) debugging
 #define RES_DEBUG_UPDATE_FREQ 5         // Update debug overlay every # frames
 #define RES_DEBUG_NAMES_PER_LINE 5      // The count of actor names to print before a line change
 #define RES_DEBUG_PRINT_MAX_LENGTH 2048 // Maximum length of the debug overlay text
