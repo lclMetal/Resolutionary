@@ -7,7 +7,7 @@
 //+..|_|.\_\|_____||_____||_____||_____||_____|..|_|..|_||_____||_|.\_||_|.|_||_|.\_\..|_|....+\\
 //=                                                                                           =\\
 //+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+\\
-//                               THE GAME SCALING SYSTEM / Version 1.0 / by lcl 2017 - 2018    \\
+//                               THE GAME SCALING SYSTEM / Version 1.0 / by lcl 2017 - 2021    \\
 
 // Settings for drawing the debug overlay
 #define RES_DEBUG 0                     // Enable (1) or disable (0) debugging
@@ -1718,4 +1718,4 @@ int resActorIsListed(Actor *a)
 
 
 
-// ---------------------------- Resolutionary by lcl / 2017 - 2018 --------------------------- //
+// ---------------------------- Resolutionary by lcl / 2017 - 2021 --------------------------- //
